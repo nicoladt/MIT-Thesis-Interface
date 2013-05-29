@@ -1,4 +1,4 @@
-mitthesis
+MIT Thesis
 =========
 
-MIT thesis
+Dissertation work in progress. 
