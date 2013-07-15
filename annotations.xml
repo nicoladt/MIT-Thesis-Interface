@@ -1,0 +1,14 @@
+<annotation type="suggestion">
+	<url>http://blabla.com</url>
+	<username>bob</username>
+	<datetime>12/05/12 14:34</datetime>
+	<highlighted>you are stupid</highlited>
+	<comment>no i'm not</comment>
+	<replies>
+		<reply>
+			<username>ted</username>
+			<comment>yes you are stupid</comment>
+			<datetime>12/13/14 15:12</datetime>
+		</reply>
+	</replies>
+</annotation>
