@@ -1,6 +1,14 @@
-div {
-    border:1px;
-    border-style:solid;
-    border-color:black;
+.annotation-entry > div.url:before{
+    content:"URL: ";
+    font-weight: bold;
 }
 
+.annotation-entry > div.highlighted:before{
+    content:"Highlighted text: ";
+    font-weight: bold;
+}
+
+.annotation-entry > div.comment:before{
+    content:"Comment: ";
+    font-weight: bold;
+}
