@@ -1,6 +1,6 @@
 $.ajax({
     type:"GET", 
-    url: "annotations.xml",
+    url: "../data/annotations.xml",
     dataType: "xml",
     success: function(data){
         var xml;
