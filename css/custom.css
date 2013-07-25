@@ -13,8 +13,9 @@
     font-weight: bold;
 }
 
-th {
+th{
 padding: 10px;
+text-decoration:underline;
 }
 
 td{
@@ -26,5 +27,5 @@ table.sortable thead {
     background-color:#eee;
     color:#666666;
     font-weight: bold;
-    cursor: default;
+    cursor: pointer;
 }
