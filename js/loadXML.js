@@ -52,5 +52,6 @@ $.ajax({
             table.append(row);
 
         });
-}
+    var myTH = document.getElementsByTagName("th")[3];
+    sorttable.innerSortFunction.apply(myTH, []);}
  });

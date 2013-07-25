@@ -8,7 +8,7 @@ var DashUtils = {
 
 
     /*
-     * given an EMAS textbook section url, return the subject, grade and chapter
+     * given an EMAS textbook section url, return the subject, grade, chapter number and chapter title
      */
     spliturl: function(url){
         var spliturl = url.split('/');
@@ -43,4 +43,6 @@ var DashUtils = {
 
 };
 
+var a = document.getElementsByTagName('a');
 
+for (var i=0; i < a.length; i++){console.log(a[i])};
