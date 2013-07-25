@@ -41,8 +41,12 @@ var DashUtils = {
 
     },
 
+    print_all_urls: function(){
+        $("div.url > a").each(function(){
+            console.log(DashUtils.spliturl($(this).text()));
+        });
+
+    },
+
 };
 
-var a = document.getElementsByTagName('a');
-
-for (var i=0; i < a.length; i++){console.log(a[i])};
