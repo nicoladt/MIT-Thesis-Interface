@@ -13,12 +13,24 @@
     font-weight: bold;
 }
 
+th:after{
+content: "\2195";
+
+  float:right;
+}
+
 th{
 padding: 10px;
-text-decoration:underline;
 }
 
 td{
 padding: 10px;
 }
 
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
