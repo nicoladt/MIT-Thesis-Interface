@@ -12,3 +12,19 @@
     content:"Comment: ";
     font-weight: bold;
 }
+
+th {
+padding: 10px;
+}
+
+td{
+padding: 10px;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
