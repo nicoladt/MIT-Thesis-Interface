@@ -25,11 +25,11 @@ var DashUtils = {
         //get subject
         var subject;
 
-        if (domain.indexOf("maths") !== -1 && chapter.indexOf("math") === -1){
+        if (domain.indexOf("maths") !== -1 && grade.indexOf("math") === -1){
             subject = "Mathematics";
         }
         
-        else if (chapter.indexOf("math") !== -1){
+        else if (grade.indexOf("math") !== -1){
             subject = "Mathematical Literacy";
         }
 
@@ -37,16 +37,67 @@ var DashUtils = {
             subject = "Physical Sciences";
         }
 
-        return [grade, subject, chapnum, chaptitle]
+        return [grade.slice(0,"grade xx".length), subject, chapnum, chaptitle]
 
     },
 
+    /* Dummy function for testing
+     */
     print_all_urls: function(){
         $("div.url > a").each(function(){
             console.log(DashUtils.spliturl($(this).text()));
         });
 
     },
+    
+    
+    /* returns a list that is a unique set of strings
+     */
+    toSet: function(list){
+        var i;
+        var newlist = new Array();
+        for (i = 0; i < list.length; i++){
+            if (this.containsObject(list[i], newlist) === false){
+                newlist.push(list[i])
+            }
+        }
 
+        return newlist
+    },
+
+
+    /*
+     * Get all the items of type field in the table
+     * field: 'grade', 'chapnum', 'chaptitle', 'subject'
+     */
+    getAll: function(field){
+        var index;
+
+        var allgrades = new Array();
+        $("div.url > a").each(function(){
+            allgrades.push(DashUtils.spliturl($(this).text())[0]);
+        });
+
+        allgrades = this.toSet(allgrades);
+        return allgrades
+    },
+
+    /* Check if obj is in list 
+     */
+    containsObject: function(obj, list) {
+        var i;
+        for (i = 0; i < list.length; i++) {
+            if (list[i] === obj) {
+                return true;
+            }
+        }
+
+        return false;
+    },
+
+
+    
 };
 
+DashUtils.print_all_urls()
+console.log(DashUtils.getAll());

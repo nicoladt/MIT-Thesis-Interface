@@ -1,6 +1,7 @@
 $.ajax({
     type:"GET", 
     url: "../data/annotations.xml",
+    async:false,
     dataType: "xml",
     success: function(data){
         var xml;
@@ -52,7 +53,7 @@ $.ajax({
             table.append(row);
 
         });
-    DashUtils.print_all_urls();
+    //DashUtils.print_all_urls();
     }
  });
  
