@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bootstrap 101 Template</title>
+        <title>Filter all the things!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -15,35 +15,47 @@
                 <label class="checkbox all">
                     <input type="checkbox"> All
                 </label>
-                <label class="checkbox maths">
-                    <input type="checkbox"> Mathematics
-                </label>
-                <label class="checkbox physci">
-                    <input type="checkbox"> Physical Sciences
-                </label>
-                <label class="checkbox mathslit">
-                    <input type="checkbox"> Maths Literacy
-                </label>
+               
             </div>
             <div class="span4 grade-filter">
                 <h3>Grade</h3>
-                <label class="checkbox"><input type="checkbox"> 10</label>
-                <label class="checkbox"><input type="checkbox"> 11</label>
-                <label class="checkbox"><input type="checkbox"> 12</label>
+               <label class="checkbox all">
+                    <input type="checkbox"> All
+                </label>
             </div>
             <div class="span4 chapter-filter">
                 <h3>Chapter</h3>
+                <label class="checkbox all">
+                    <input type="checkbox"> All
+                </label>
             </div>
             <div class="span4 type-filter">
                 <h3>Type of annotation</h3>
+                <label class="checkbox all">
+                    <input type="checkbox"> All
+                </label>
             </div>
 
 
         </div>
-        <div class="span8 annotation-container">Main</div>
+        <div class="span12 annotation-container">
+            <table border=1 class="annotation-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Annotation information</th>
+                    <th>Replies</th>
+                    <th>Date</th>
+                </tr>
+                
+            </table>
+        </div>
+
 
         <!-- Javascript -->
         <script src="http://code.jquery.com/jquery.js"></script>
+        <!--        Tablesorter call: <script src="TableSorter/jquery.tablesorter.js"></script>-->
+        <script src="js/loadXML.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/DashboardUtils.js"></script>
     </body>
 </html>

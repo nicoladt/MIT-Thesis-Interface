@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Maths-->
+<!--Grade 10-->
+<!--Chapter 1-->
+<annotations>
+  <annotation type="errata">
+    <url>https://everythingmaths.co.za/grade-10/01-algebraic-expressions/01-algebraic-expressions-01.cnxmlplus</url>
+    <username>bob</username>
+    <datetime>2013-07-01T19:20:30+02:00</datetime>
+    <highlighted>We use the following definitions:</highlighted>
+    <comment>This is Maths Grade 10 Chapter 1</comment>
+    <replies>
+      <reply>
+        <username>ted</username>
+        <comment>Yes, this is definitely Maths Grade 10 Chapter 1</comment>
+        <datetime>2013-07-12T20:20:30+02:00</datetime>
+      </reply>
+    </replies>
+  </annotation>
+  <!--Chapter 2-->
+  <annotation type="suggestion">
+    <url>https://everythingmaths.co.za/grade-10/02-equations-and-inequalities/02-equations-and-inequalities-01.cnxmlplus</url>
+    <username>sally</username>
+    <datetime>2013-07-02T19:20:30+02:00</datetime>
+    <highlighted>The simplest equation to solve is a linear equation</highlighted>
+    <comment>This is Maths Grade 10 Chapter 2</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 3-->
+  <annotation type="comment">
+    <url>https://everythingmaths.co.za/grade-10/03-exponentials/03-exponentials-01.cnxmlplus</url>
+    <username>sophie</username>
+    <datetime>2013-07-03T19:20:30+02:00</datetime>
+    <highlighted>Exponential notation is a short way</highlighted>
+    <comment>This is Maths Grade 10 Chapter 3</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 4-->
+  <annotation type="errata">
+    <url>https://everythingmaths.co.za/grade-10/04-number-patterns/04-number-patterns-01.cnxmlplus</url>
+    <username>ben</username>
+    <datetime>2013-07-04T19:20:30+02:00</datetime>
+    <highlighted>In earlier grades you saw patterns in the form of pictures and numbers</highlighted>
+    <comment>This is Maths Grade 10 Chapter 4</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 5-->
+  <annotation type="suggestion">
+    <url>https://everythingmaths.co.za/grade-10/05-functions/05-functions-01.cnxmlplus</url>
+    <username>john</username>
+    <datetime>2013-07-05T19:20:30+02:00</datetime>
+    <highlighted>Functions are mathematical building blocks for designing machines</highlighted>
+    <comment>This is Maths Grade 10 Chapter 5</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 6-->
+  <annotation type="comment">
+    <url>https://everythingmaths.co.za/grade-10/06-finance-and-growth/06-finance-and-growth-01.cnxmlplus</url>
+    <username>thembi</username>
+    <datetime>2013-07-06T19:20:30+02:00</datetime>
+    <highlighted>In this chapter, we apply mathematics skills</highlighted>
+    <comment>This is Maths Grade 10 Chapter 6</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 7-->
+  <annotation type="errata">
+    <url>https://everythingmaths.co.za/grade-10/07-trigonometry/07-trigonometry-01.cnxmlplus</url>
+    <username>alex</username>
+    <datetime>2013-07-07T19:20:30+02:00</datetime>
+    <highlighted>Trigonometry deals with the relationship between the angles and sides of a right-angled triangle. </highlighted>
+    <comment>This is Maths Grade 10 Chapter 7</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 8-->
+  <annotation type="suggestion">
+    <url>https://everythingmaths.co.za/grade-10/08-analytical-geometry/08-analytical-geometry-01.cnxmlplus</url>
+    <username>mbali</username>
+    <datetime>2013-07-08T19:20:30+02:00</datetime>
+    <highlighted>Analytical geometry is the study of geometric properties, </highlighted>
+    <comment>This is Maths Grade 10 Chapter 8</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 9-->
+  <annotation type="comment">
+    <url>https://everythingmaths.co.za/grade-10/09-statistics/09-statistics-01.cnxmlplus</url>
+    <username>ivan</username>
+    <datetime>2013-07-09T19:20:30+02:00</datetime>
+    <highlighted>When running an experiment or conducting a survey we can potentially</highlighted>
+    <comment>This is Maths Grade 10 Chapter 9</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 10-->
+  <annotation type="errata">
+    <url>https://everythingmaths.co.za/grade-10/10-probability/10-probability-01.cnxmlplus</url>
+    <username>mike</username>
+    <datetime>2013-07-10T19:20:30+02:00</datetime>
+    <highlighted>We use probability to describe uncertain events. </highlighted>
+    <comment>This is Maths Grade 10 Chapter 10</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 11-->
+  <annotation type="suggestion">
+    <url>https://everythingmaths.co.za/grade-10/11-geometry/11-geometry-01.cnxmlplus</url>
+    <username>lucia</username>
+    <datetime>2013-07-11T19:20:30+02:00</datetime>
+    <highlighted>Geometry (from the Greek geo = earth and metria = measure)</highlighted>
+    <comment>This is Maths Grade 10 Chapter 11</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Chapter 12-->
+  <annotation type="comment">
+    <url>https://everythingmaths.co.za/grade-10/12-measurement/12-measurement-01.cnxmlplus</url>
+    <username>zinzi</username>
+    <datetime>2013-07-12T19:20:30+02:00</datetime>
+    <highlighted>This chapter examines the surface areas of two dimensional objects</highlighted>
+    <comment>This is Maths Grade 10 Chapter 12</comment>
+    <!--<replies>
+                <reply>
+                        <username>ted</username>
+                        <comment>yes you are stupid</comment>
+                        <datetime>2013-07-12T20:20:30+02:00</datetime>
+                </reply>
+        </replies>-->
+  </annotation>
+  <!--Physical Sciences-->
+  <!--Chapter 1-->
+  <annotation type="errata">
+    <url>https://everythingscience.co.za/grade-10/01-skills-for-science/01-skills-for-science-01.cnxmlplus</url>
+    <username>jane</username>
+    <datetime>2013-07-01T19:20:30+02:00</datetime>
+    <highlighted>In the physical sciences there are many skills that you need to learn. </highlighted>
+    <comment>This is Physical Sciences Grade 10 Chapter 1</comment>
+    <replies>
+      <reply>
+        <username>fred</username>
+        <comment>Yes, this is definitely Physical Sciences Grade 10 Chapter 1</comment>
+        <datetime>2013-07-12T20:20:30+02:00</datetime>
+      </reply>
+    </replies>
+  </annotation>
+  <!--Maths Lit-->
+  <!--Chapter 1-->
+  <annotation type="errata">
+    <url>https://everythingmaths.co.za/grade-10-mathematical-literacy/01-numbers-and-calculations-with-numbers/01-numbers-and-calculations-with-numbers-01.cnxmlplus</url>
+    <username>eric</username>
+    <datetime>2013-07-01T19:20:30+02:00</datetime>
+    <highlighted>Numbers occur all around us in many formats and contexts. For example, your house has a number,</highlighted>
+    <comment>This is Maths Lit Grade 10 Chapter 1</comment>
+    <replies>
+      <reply>
+        <username>karen</username>
+        <comment>Yes, this is definitely Maths Lit Grade 10 Chapter 1</comment>
+        <datetime>2013-07-12T20:20:30+02:00</datetime>
+      </reply>
+    </replies>
+  </annotation>
+</annotations>
