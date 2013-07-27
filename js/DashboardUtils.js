@@ -1,4 +1,3 @@
-var DashUtils = {
 /* Utilities needed for Annotation Dashboard 
  *
  * Ewald Zietsman 
@@ -6,6 +5,8 @@ var DashUtils = {
  *
  * */
 
+
+var DashUtils = {
 
     /*
      * given an EMAS textbook section url, return the subject, grade, chapter number and chapter title
@@ -89,6 +90,7 @@ var DashUtils = {
         return false;
     },
 
+
     /* Populate the annotation table
      * annotations: array containing Annotation objects
      */
@@ -101,7 +103,7 @@ var DashUtils = {
             var annotation = annotations[i];
             // type column only gets the type
             typeentry = $('<td></td>');
-            typeentry.html(anntype);
+            typeentry.html(annotation.type);
             
             // annotation info gets 3 divs
             annentry = $('<td class="annotation-entry"></td>');
@@ -133,14 +135,78 @@ var DashUtils = {
 
     /* Remove all entries from the table */
     clearAnnotationTable: function() {
-
         $('.annotation-table  tr').each(function() {
             $(this).remove();
         });
-        
+    },
+
+
+    /*
+     * Set up the filter boxes using the given list of annotations
+     * */
+    setupFilterBoxes: function(annotationList) {
+        var subjects = new Array();
+        var grades = new Array();
+        var chapters = new Array();
+        var types = new Array();
+
+        // go through the annotations
+        for (var i in annotationList) {
+            var annotation = annotationList[i];
+            // go through each property of the annotation
+            var properties = ["subject", "grade", "chapter", "type"];
+            var prop;
+            var j;
+            for (j = 0; j < properties.length; j++) {
+                prop = properties[j];
+                switch (prop)
+                {
+                    case "subject":
+                        subjects.push(annotation[prop]);
+                        break;
+
+                    case "grade":
+                        grades.push(annotation[prop]);
+                        break;
+
+                    case "chapter":
+                        chapters.push(annotation[prop]);
+                        break;
+
+                    case "type":
+                        types.push(annotation[prop]);
+                        break;
+                }
+            }
+        } 
+
+        // get the unique sets
+        subjects = DashUtils.toSet(subjects);
+        grades = DashUtils.toSet(grades);
+        types = DashUtils.toSet(types);
+        chapters = DashUtils.toSet(chapters);
+
+
+    },
+
+
+    /*
+     * Process the Annotations in the list. Add data contained in url in new fields.
+     * */ 
+    processAnnotations: function(annotations){
+        var i;
+        for (var i in annotations) {
+            var split = this.spliturl(annotations[i].url);
+            annotations[i].grade = split[0];
+            annotations[i].subject = split[1];
+            annotations[i].chapter = split[2] + ' ' + split[3];
+        }
+
     },
 
     
 };
 
+DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
+DashUtils.setupFilterBoxes(annotationList);

@@ -13,17 +13,16 @@ $.ajax({
         xmlDoc = $.parseXML(xml);
         $xml = $(xmlDoc);
         $(xml).find("annotation").each( function (index){
-            url = $(this).find('url');
-            username = $(this).find('username');
-            datetime = $(this).find('annotation>datetime');
-            highlighted = $(this).find('highlighted');
-            comment = $(this).find('annotation>comment');
-            anntype = $(this).attr('type');
-            replies = $(this).find('reply');
+            var url = $(this).find('url');
+            var username = $(this).find('username');
+            var datetime = $(this).find('annotation>datetime');
+            var highlighted = $(this).find('highlighted');
+            var comment = $(this).find('annotation>comment');
+            var anntype = $(this).attr('type');
+            var replies = $(this).find('reply');
 
-            table = $('.annotation-table');
-            
-            row = $('<tr></tr>');
+            var table = $('.annotation-table');
+            var row = $('<tr></tr>');
             
             // Create annotation object
             var annotation = new Object ();
@@ -32,6 +31,7 @@ $.ajax({
             annotation.highlight = highlighted.text();
             annotation.comment = comment.text();
             annotation.time = datetime.text();
+            annotation.type = anntype;
             annotation.replies = new Array();
 
             // Add all the replies
@@ -45,8 +45,6 @@ $.ajax({
             });
 
             annotationList.push(annotation);
-
-
 
         });
     }
