@@ -1,3 +1,5 @@
+annotationList = new Array();
+
 $.ajax({
     type:"GET", 
     url: "../data/annotations.xml",
@@ -22,38 +24,31 @@ $.ajax({
             table = $('.annotation-table');
             
             row = $('<tr></tr>');
-
-            // type column only gets the type
-            typeentry = $('<td></td>');
-            typeentry.html(anntype);
             
-            // annotation info gets 3 divs
-            annentry = $('<td class="annotation-entry"></td>');
-            urldiv = $('<div class="url"/>').html('<a href="' + url.text() + '">' + url.text() + "</a>");
-            hldiv = $('<div class="highlighted"/>').html(highlighted.text());
-            commentdiv = $('<div class="comment"/>').html(comment.text());
+            // Create annotation object
+            var annotation = new Object ();
+            annotation.username = username.text()
+            annotation.url = url.text();
+            annotation.highlight = highlighted.text();
+            annotation.comment = comment.text();
+            annotation.time = datetime.text();
+            annotation.replies = new Array();
 
-            annentry.append(urldiv);
-            annentry.append(hldiv);
-            annentry.append(commentdiv);
+            // Add all the replies
+            replies.each(function() {
+                var reply = new Object();
+                reply.username = $(this).find('username').text()
+                reply.comment = $(this).find('comment').text()
+                reply.time = $(this).find('datetime').text()
+                annotation.replies.push(reply)
             
-            // number of replies
-            replyentry = $('<td class="replies-entry"/>');
-            replyentry.html(replies.length);
+            });
 
-            // date
-            dateentry = $('<td class="date-entry"/>');
-            dateentry.html(datetime.text());
-            
-            // add everything to table
-            row.append(typeentry);
-            row.append(annentry);
-            row.append(replyentry);
-            row.append(dateentry);
-            table.append(row);
+            annotationList.push(annotation);
+
+
 
         });
-    //DashUtils.print_all_urls();
     }
  });
  

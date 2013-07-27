@@ -28,17 +28,13 @@ var DashUtils = {
         if (domain.indexOf("maths") !== -1 && grade.indexOf("math") === -1){
             subject = "Mathematics";
         }
-        
         else if (grade.indexOf("math") !== -1){
             subject = "Mathematical Literacy";
         }
-
         else if (domain.indexOf("science") !== -1){
             subject = "Physical Sciences";
         }
-
         return [grade.slice(0,"grade xx".length), subject, chapnum, chaptitle]
-
     },
 
     /* Dummy function for testing
@@ -47,7 +43,6 @@ var DashUtils = {
         $("div.url > a").each(function(){
             console.log(DashUtils.spliturl($(this).text()));
         });
-
     },
     
     
@@ -61,7 +56,6 @@ var DashUtils = {
                 newlist.push(list[i])
             }
         }
-
         return newlist
     },
 
@@ -95,9 +89,58 @@ var DashUtils = {
         return false;
     },
 
+    /* Populate the annotation table
+     * annotations: array containing Annotation objects
+     */
+    populateAnnotationTable: function(annotations) {
+        var table = $('.annotation-table');
+
+        var i;
+        for (i = 0; i < annotations.length; i++) {
+            var row = $('<tr></tr>');
+            var annotation = annotations[i];
+            // type column only gets the type
+            typeentry = $('<td></td>');
+            typeentry.html(anntype);
+            
+            // annotation info gets 3 divs
+            annentry = $('<td class="annotation-entry"></td>');
+            urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
+            hldiv = $('<div class="highlighted"/>').html(annotation.highlighted);
+            commentdiv = $('<div class="comment"/>').html(annotation.comment);
+
+            annentry.append(urldiv);
+            annentry.append(hldiv);
+            annentry.append(commentdiv);
+            
+            // number of replies
+            replyentry = $('<td class="replies-entry"/>');
+            replyentry.html(annotation.replies.length);
+
+            // date
+            dateentry = $('<td class="date-entry"/>');
+            dateentry.html(annotation.time);
+            
+            // add everything to table
+            row.append(typeentry);
+            row.append(annentry);
+            row.append(replyentry);
+            row.append(dateentry);
+            table.append(row);
+        }
+            
+    },
+
+    /* Remove all entries from the table */
+    clearAnnotationTable: function() {
+
+        $('.annotation-table  tr').each(function() {
+            $(this).remove();
+        });
+        
+    },
 
     
 };
 
-DashUtils.print_all_urls()
-console.log(DashUtils.getAll());
+DashUtils.populateAnnotationTable(annotationList);
