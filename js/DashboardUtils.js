@@ -108,7 +108,7 @@ var DashUtils = {
             // annotation info gets 3 divs
             annentry = $('<td class="annotation-entry"></td>');
             urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
-            hldiv = $('<div class="highlighted"/>').html(annotation.highlighted);
+            hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
             commentdiv = $('<div class="comment"/>').html(annotation.comment);
 
             annentry.append(urldiv);
