@@ -224,8 +224,8 @@ var DashUtils = {
                 var divclass = field[s].replace(' ', '').toLowerCase();
                 var label = $("<div></div");
                 label.addClass(divclass);
-                label.text(' ' + field[s] + "\n");
-                label.prepend($('<input type="checkbox"/>'));
+                label.text(' ' + field[s]);
+                label.prepend($('<input type="checkbox" checked/>'));
                 subjectdiv.append(label);
             }
         }
@@ -246,9 +246,41 @@ var DashUtils = {
 
     },
 
+
+    /* Register event handlers
+     */
+    registerEventHandlers: function () {
+
+        // functionality for the 'all' checkbox in the filterboxes
+        // if all is checked, select all in filterbox
+        // if all is unchecjed, uncheck all in filterbox
+        $('.checkbox.all > input').on('change', function (event) {
+            if (this.checked === true){
+                console.log('checked');
+                // make all siblings checked too
+                $(this).parent().siblings('div').children('input')
+                .each(function(){
+                    $(this).prop('checked', true);                    
+                    });
+            }
+            else {
+                console.log('unchecked');
+                // make all siblings checked too
+                $(this).parent().siblings('div').children('input')
+                .each(function(){
+                    $(this).prop('checked', false);                    
+                    });
+            }
+        });
+
+
+
+    },
+
     
 };
 
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
+DashUtils.registerEventHandlers();
