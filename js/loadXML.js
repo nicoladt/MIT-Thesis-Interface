@@ -56,12 +56,6 @@ $.ajax({
         });
     }
  });
- 
-//TableSorter bitsie. URL: http://tablesorter.com/docs/ 
-//$(document).ready(function() 
-//    { 
-//      $("#myTable").tablesorter(); 
-//    } 
-//); 
+
 
 

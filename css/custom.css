@@ -9,15 +9,6 @@
     font-weight: bold;
 }
 
-/*th{
-padding: 10px;
-text-decoration:underline;
-}
-
-td{
-padding: 10px;
-}*/
-
 
 /* Table Sorter CSS */
 table.tablesorter {
@@ -27,7 +18,7 @@ table.tablesorter {
 	font-size: 10pt;
 	width: 100%;
 	text-align: left;
-	table-layout:auto;
+	table-layout:fixed;
 }
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	background-color: #e6EEEE;
