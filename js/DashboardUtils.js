@@ -236,6 +236,7 @@ var DashUtils = {
             for (var s in field) {
                 var divclass = field[s].replace(' ', '').toLowerCase();
                 var label = $("<div></div");
+                label.fadeTo(10, 0.5);
                 label.addClass(divclass);
                 label.text(' ' + field[s]);
                 label.prepend($('<input type="checkbox"/>'));
@@ -273,14 +274,16 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', true);                    
+                    $(this).prop('checked', true)
+                    $(this).parent().fadeTo(50, 0.5);
                     });
             }
             else {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', false);                    
+                    $(this).prop('checked', false);
+ //                   $(this).parent().fadeTo(50, 1.0);
                     });
             }
         });
@@ -290,11 +293,13 @@ var DashUtils = {
             $(this).parent().parent().find('div > input').each(function(){
                 if (!$(this).prop("checked")){
                    $(this).parent().parent().children('label').children('input').prop('checked',false);
+                   
+                   // unfade the other checkboxes
+                   $(this).parent().siblings('div').fadeTo(50, 1.0);
+                   $(this).parent().fadeTo(50, 1.0);
+
                 }
                 });
-//           if (!$(this).prop('checked')){
-//               $(this).parent().parent().children('label').children('input').prop('checked',false);
-//           }
         });
 
 
