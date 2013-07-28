@@ -1,7 +1,3 @@
-.annotation-entry > div.url:before{
-    content:"URL: ";
-    font-weight: bold;
-}
 
 .annotation-entry > div.highlighted:before{
     content:"Highlighted text: ";
@@ -64,4 +60,21 @@ table.tablesorter thead tr .headerSortDown {
 }
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
+}
+
+
+
+/* Annotation styles in table */
+
+.annotation-entry > div.subject, .grade, .chapternumber {
+    font-size: 120%;
+    float:left;
+}
+
+div.subject {
+    width:33%;
+}
+
+div.grade, div.chapternumber {
+    width:15%;
 }

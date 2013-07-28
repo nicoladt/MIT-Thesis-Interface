@@ -8,6 +8,10 @@
 
 var DashUtils = {
 
+    capitaliseFirstLetter: function(string){
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    },
+
     /*
      * given an EMAS textbook section url, return the subject, grade, chapter number and chapter title
      */
@@ -102,25 +106,34 @@ var DashUtils = {
             var row = $('<tr></tr>');
             var annotation = annotations[i];
             // type column only gets the type
-            typeentry = $('<td></td>');
+            var typeentry = $('<td></td>');
             typeentry.html(annotation.type);
             
-            // annotation info gets 3 divs
-            annentry = $('<td class="annotation-entry"></td>');
-            urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
-            hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
-            commentdiv = $('<div class="comment"/>').html(annotation.comment);
+            // annotation info gets 7 divs
+            var subjectdiv = $('<div class="subject"></div>').text(annotation.subject);
+            var gradediv = $('<div class="grade"></div>').text(annotation.grade);
+            var chapternumberdiv = $('<div class="chapternumber"></div>').text(annotation.chapter*1);
+            var chaptertitlediv = $('<div class="chaptertitle"></div>').text(annotation.chaptertitle);
 
+            var annentry = $('<td class="annotation-entry"></td>');
+            var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
+            var hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
+            var commentdiv = $('<div class="comment"/>').html(annotation.comment);
+
+            annentry.append(subjectdiv);
+            annentry.append(gradediv);
+            annentry.append(chapternumberdiv);
+            annentry.append(chaptertitlediv);
             annentry.append(urldiv);
             annentry.append(hldiv);
             annentry.append(commentdiv);
             
             // number of replies
-            replyentry = $('<td class="replies-entry"/>');
+            var replyentry = $('<td class="replies-entry"/>');
             replyentry.html(annotation.replies.length);
 
             // date
-            dateentry = $('<td class="date-entry"/>');
+            var dateentry = $('<td class="date-entry"/>');
             dateentry.html(annotation.time);
             
             // add everything to table
@@ -242,6 +255,7 @@ var DashUtils = {
             annotations[i].grade = split[0];
             annotations[i].subject = split[1];
             annotations[i].chapter = split[2];
+            annotations[i].chaptertitle = DashUtils.capitaliseFirstLetter(split[3]);
         }
 
     },
