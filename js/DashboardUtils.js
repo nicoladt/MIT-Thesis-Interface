@@ -225,7 +225,7 @@ var DashUtils = {
                 var label = $("<div></div");
                 label.addClass(divclass);
                 label.text(' ' + field[s]);
-                label.prepend($('<input type="checkbox" checked/>'));
+                label.prepend($('<input type="checkbox"/>'));
                 subjectdiv.append(label);
             }
         }
@@ -254,9 +254,8 @@ var DashUtils = {
         // functionality for the 'all' checkbox in the filterboxes
         // if all is checked, select all in filterbox
         // if all is unchecjed, uncheck all in filterbox
-        $('.checkbox.all > input').on('change', function (event) {
+        $('.checkbox.all > input').on('click', function (event) {
             if (this.checked === true){
-                console.log('checked');
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
@@ -264,13 +263,24 @@ var DashUtils = {
                     });
             }
             else {
-                console.log('unchecked');
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
                     $(this).prop('checked', false);                    
                     });
             }
+        });
+
+        //If any other filter button is unchecked, uncheck the all button too
+        $('div > input').on('click', function (event){
+            $(this).parent().parent().find('div > input').each(function(){
+                if (!$(this).prop("checked")){
+                   $(this).parent().parent().children('label').children('input').prop('checked',false);
+                }
+                });
+//           if (!$(this).prop('checked')){
+//               $(this).parent().parent().children('label').children('input').prop('checked',false);
+//           }
         });
 
 
