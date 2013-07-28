@@ -185,8 +185,50 @@ var DashUtils = {
         grades = DashUtils.toSet(grades);
         types = DashUtils.toSet(types);
         chapters = DashUtils.toSet(chapters);
+        var fields = [subjects, grades, types, chapters];
 
+        subjects.sort();
+        grades.sort();
+        types.sort();
+        chapters.sort();
 
+        // Now populate the filter boxes
+        // Loop through different filters
+        for (var i in fields){
+            var field = fields[i];
+            var fieldname;
+            switch (field)
+            {
+                case subjects:
+                    fieldname = 'subject';
+                    break;
+                case grades:
+                    fieldname = 'grade';
+                    break;
+                case types:
+                    fieldname = 'type';
+                    break;
+                case chapters:
+                    fieldname = 'chapter';
+                    break;
+            }
+            /*
+             * This creates an element
+             *  <div class="fieldname-filter>
+             *      <input class="checkbox">
+             *      Labeltext
+             *  </div>
+             */
+            var subjectdiv = $('div.' + fieldname +'-filter');
+            for (var s in field) {
+                var divclass = field[s].replace(' ', '').toLowerCase();
+                var label = $("<div></div");
+                label.addClass(divclass);
+                label.text(' ' + field[s] + "\n");
+                label.prepend($('<input type="checkbox"/>'));
+                subjectdiv.append(label);
+            }
+        }
     },
 
 
@@ -199,7 +241,7 @@ var DashUtils = {
             var split = this.spliturl(annotations[i].url);
             annotations[i].grade = split[0];
             annotations[i].subject = split[1];
-            annotations[i].chapter = split[2] + ' ' + split[3];
+            annotations[i].chapter = split[2];
         }
 
     },
