@@ -1,3 +1,10 @@
+//Calls TableSorter 
+$(document).ready(function() 
+    { 
+        $("table").tablesorter(); 
+    } 
+); 
+
 annotationList = new Array();
 
 $.ajax({
