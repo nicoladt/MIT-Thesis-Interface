@@ -10,6 +10,7 @@
 }
 
 
+
 /* Table Sorter CSS */
 table.tablesorter {
 	font-family:arial;
@@ -40,9 +41,7 @@ table.tablesorter tbody td {
 	background-color: #FFF;
 	vertical-align: top;
 }
-/*table.tablesorter tbody tr.odd td {
-	background-color:#F0F0F6;
-}*/
+
 table.tablesorter thead tr .headerSortUp {
 	background-image: url(../TableSorter/themes/blue/asc.gif);
 }
@@ -57,9 +56,10 @@ background-color: #8dbdd8;
 
 /* Annotation styles in table */
 
-.annotation-entry > div.subject, .grade, .chapternumber {
-    font-size: 120%;
+.annotation-entry > div.subject, .grade, .chapternumber, .chaptertitle {
+    font-size: 100%;
     float:left;
+    font-weight:bold;
 }
 
 div.subject {
