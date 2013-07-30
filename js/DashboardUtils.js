@@ -101,6 +101,8 @@ var DashUtils = {
     populateAnnotationTable: function(annotations) {
         var table = $('.annotation-table');
 
+        DashUtils.clearAnnotationTable();
+        
         var i;
         for (i = 0; i < annotations.length; i++) {
             var row = $('<tr></tr>');
@@ -143,12 +145,12 @@ var DashUtils = {
             row.append(dateentry);
             table.append(row);
         }
-            
+           //TODO Call the table sorter to update the table 
     },
 
     /* Remove all entries from the table */
     clearAnnotationTable: function() {
-        $('.annotation-table  tr').each(function() {
+        $('.annotation-table > tbody > tr').each(function() {
             $(this).remove();
         });
     },
@@ -232,18 +234,23 @@ var DashUtils = {
              *      Labeltext
              *  </div>
              */
-            var subjectdiv = $('div.' + fieldname +'-filter');
-            for (var s in field) {
-                var divclass = field[s].replace(' ', '').toLowerCase();
-                var label = $("<div></div");
-                label.fadeTo(10, 0.5);
-                label.addClass('filter');
-                label.addClass(divclass);
-                label.text(' ' + field[s]);
-                label.prepend($('<input type="checkbox"/>'));
-                subjectdiv.append(label);
+            
+            // if its there already, do nothing, else eventhandlers go walkabouts
+            if ($('div.' + fieldname +'-filter > div.filter').length === 0){
+                var subjectdiv = $('div.' + fieldname +'-filter');
+                for (var s in field) {
+                    var divclass = field[s].replace(' ', '').toLowerCase();
+                    var label = $("<div></div");
+                    label.fadeTo(10, 0.5);
+                    label.addClass('filter');
+                    label.addClass(divclass);
+                    label.text(' ' + field[s]);
+                    label.prepend($('<input type="checkbox"/>'));
+                    subjectdiv.append(label);
+                }
             }
         }
+
     },
 
 
@@ -277,6 +284,10 @@ var DashUtils = {
                     $(this).prop('checked', false)
                     $(this).parent().fadeTo(50, 0.5);
                     });
+
+                // update the table and filter boxes
+                DashUtils.populateAnnotationTable(annotationList);
+                DashUtils.setupFilterBoxes(annotationList);
             }
             else {
                 // make all siblings checked too
@@ -314,8 +325,37 @@ var DashUtils = {
 
         // When any filter button changes state, update the table
         $('.filter>input').on("click", function() {
-            // update the table
+            console.log('clicked .filter>input');
             var updatedAnnotationList = new Array();
+            
+            // Subject Filters
+            var subjectsall = $('.subject-filter > label > input[type="checkbox"]');
+            var subjects = $('.subject-filter > div > input[type="checkbox"]');
+            var subjectsvisible = new Array();
+            //Add the subjects that are checked
+            subjects.each(function(){
+                if ($(this).prop('checked')){
+                    subjectsvisible.push($(this).parent().prop('class').split(' ')[1]);
+                }
+            });
+            // now loop through the annotation list and only push the visible ones
+            // to updatedAnnotationList
+            if (subjectsall.prop('checked') === false){
+                var i;
+                var j;
+                var filterclass;
+                for (i = 0; i < annotationList.length; i++){
+                    filterclass = annotationList[i].subject.toLowerCase().replace(' ', '');
+                    for (j = 0; j < subjectsvisible.length; j++){
+                        if (subjectsvisible[j] === filterclass){
+                            updatedAnnotationList.push(annotationList[i]);
+                        }
+                    } // j
+                } // i
+                DashUtils.populateAnnotationTable(updatedAnnotationList);
+                DashUtils.setupFilterBoxes(updatedAnnotationList);
+            }
+
             
         });
     },
