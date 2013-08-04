@@ -325,39 +325,68 @@ var DashUtils = {
 
         // When any filter button changes state, update the table
         $('.filter>input').on("click", function() {
-            console.log('clicked .filter>input');
+            var activeFilter = DashUtils.findallCheckedBoxes();
             var updatedAnnotationList = new Array();
-            
-            // Subject Filters
-            var subjectsall = $('.subject-filter > label > input[type="checkbox"]');
-            var subjects = $('.subject-filter > div > input[type="checkbox"]');
-            var subjectsvisible = new Array();
-            //Add the subjects that are checked
-            subjects.each(function(){
-                if ($(this).prop('checked')){
-                    subjectsvisible.push($(this).parent().prop('class').split(' ')[1]);
-                }
-            });
             // now loop through the annotation list and only push the visible ones
             // to updatedAnnotationList
-            if (subjectsall.prop('checked') === false){
-                var i;
-                var j;
-                var filterclass;
-                for (i = 0; i < annotationList.length; i++){
-                    filterclass = annotationList[i].subject.toLowerCase().replace(' ', '');
-                    for (j = 0; j < subjectsvisible.length; j++){
-                        if (subjectsvisible[j] === filterclass){
-                            updatedAnnotationList.push(annotationList[i]);
-                        }
-                    } // j
-                } // i
-                DashUtils.populateAnnotationTable(updatedAnnotationList);
-                DashUtils.setupFilterBoxes(updatedAnnotationList);
-            }
+            var i;
+            var j;
+            var filterclass;
+            var thisSubject, thisGrade, thisChapter, thisType;
+            for (i = 0; i < annotationList.length; i++){
+                thisSubject = annotationList[i].subject.toLowerCase().replace(' ','');
+                thisGrade = annotationList[i].grade.toLowerCase().replace(' ','');
+                thisChapter = annotationList[i].chapter;
+                thisType = annotationList[i].type;
+                // Check if annotation in list is shown in active Filter
+                if (DashUtils.containsObject(thisSubject, activeFilter.subject) || activeFilter.subject[0] === 'all'){
+                    if (DashUtils.containsObject(thisGrade, activeFilter.grade) || activeFilter.grade[0] === 'all'){
+                        if (DashUtils.containsObject(thisChapter, activeFilter.chapter) || activeFilter.chapter[0] === 'all'){
+                            if (DashUtils.containsObject(thisType, activeFilter.type) || activeFilter.type[0] === 'all'){
+                                updatedAnnotationList.push(annotationList[i]);
+                            } // if type
+                        } // if chapter
+                    } // if grade
+                } // if subject
+            } // i
+            DashUtils.populateAnnotationTable(updatedAnnotationList);
+            DashUtils.setupFilterBoxes(updatedAnnotationList);
 
-            
         });
+    },
+
+
+    /* find all the checked checkboxes
+     */
+    findallCheckedBoxes: function(){
+        var activeFilter = {
+            subject: [],
+            grade: [],
+            chapter: [],
+            type: []
+        };
+
+        var allBox;
+
+        $('input[type="checkbox"]').each(function() {
+            if ($(this).prop('checked')){
+                var thisFilterClass = $(this).parent().parent().prop('class');
+                
+                if (thisFilterClass.indexOf('subject') != -1){
+                    activeFilter.subject.push($(this).parent().prop('class').split(' ')[1]);
+                }
+                else if (thisFilterClass.indexOf('grade') != -1){
+                    activeFilter.grade.push($(this).parent().prop('class').split(' ')[1]);
+                }
+                else if (thisFilterClass.indexOf('chapter') != -1){
+                    activeFilter.chapter.push($(this).parent().prop('class').split(' ')[1]);
+                }
+                else if (thisFilterClass.indexOf('type') != -1){
+                    activeFilter.type.push($(this).parent().prop('class').split(' ')[1]);
+                }
+            }
+        });
+        return activeFilter;
     },
 };
 
