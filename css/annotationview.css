@@ -1,0 +1,25 @@
+/*CSS for detailed view of single annotation*/
+
+div.annotation-view{
+	border:1px solid;
+	width:5%;
+}
+.annotation-view > div.type{
+	border:1px solid;
+	width:5%;
+}
+.annotation-view > div.type:before{
+	content:"Type\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+.annotation-view > div.url{
+		border:1px solid;
+	width:30%;
+}
+.annotation-view > div.url:before{
+	content:"URL\a";  
+	white-space: pre;
+	font-weight: bold;
+}
