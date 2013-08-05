@@ -69,3 +69,8 @@ div.subject {
 div.grade, div.chapternumber {
     width:15%;
 }
+
+div.chapter-filter > div.filter{
+	width:33%;
+	float: left;
+}
