@@ -1,0 +1,76 @@
+
+.annotation-entry > div.highlighted:before{
+    content:"Highlighted text: ";
+    font-weight: bold;
+}
+
+.annotation-entry > div.comment:before{
+    content:"Comment: ";
+    font-weight: bold;
+}
+
+
+
+/* Table Sorter CSS */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	padding: 10px;
+	font-size: 10pt;
+	width: 100%;
+	text-align: left;
+	table-layout:fixed;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #000;
+	font-size: 10pt;
+	padding: 13px;
+	text-decoration:underline;
+	
+}
+table.tablesorter thead tr .header {
+	background-image: url(../TableSorter/themes/blue/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 5px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(../TableSorter/themes/blue/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(../TableSorter/themes/blue/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+
+
+/* Annotation styles in table */
+
+.annotation-entry > div.subject, .grade, .chapternumber, .chaptertitle {
+    font-size: 100%;
+    float:left;
+    font-weight:bold;
+}
+
+div.subject {
+    width:33%;
+}
+
+div.grade, div.chapternumber {
+    width:15%;
+}
+
+div.chapter-filter > div.filter{
+	width:33%;
+	float: left;
+}

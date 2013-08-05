@@ -1,80 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Mitthesis by nicoladt</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>M.Phil IT thesis</h1>
-        <h2>UCT dissertation</h2>
-        <a href="https://github.com/nicoladt/mitthesis" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Yay for GitHub pages!</h3>
-
-<p>This is a placeholder page for what will soon become a prototype of the interface I'm designing as part of my dissertation. </p>
-
-<pre><code>code is formatted using "code" tags
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+    <head>
+        <title>Filter all the things!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+       
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/custom.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <h1>Annotator Dashboard</h1>
+        <div class="span4 filters-container">
+            <div class="span4 subject-filter">
+                <h3>Subject</h3>
+                <label class="checkbox all filter">
+                    <input type="checkbox" checked> All
+                </label>
+            </div>
+            <div class="span4 grade-filter">
+                <h3>Grade</h3>
+               <label class="checkbox all filter">
+                    <input type="checkbox" checked> All
+                </label>
+            </div>
+            <div class="span4 chapter-filter">
+                <h3>Chapter</h3>
+                <label class="checkbox all filter">
+                    <input type="checkbox" checked> All
+                </label>
+            </div>
+            <div class="span4 type-filter">
+                <h3>Type of annotation</h3>
+                <label class="checkbox all filter">
+                    <input type="checkbox" checked> All
+                </label>
+            </div>
 
 
+        </div>
+        <div class="span12 annotation-container">
+            <table border=1 class="annotation-table tablesorter">
+              <thead>
+                <tr>
+                    <th width="10%">Type</th>
+                    <th width="65%">Annotation information</th>
+                    <th width="10%">Replies</th>
+                    <th width="15%">Date</th>
+                </tr>
+             </thead>
+             <tbody>
+             </tbody>
+               
+            </table>
+        </div>
+        
+       
 
-<!--<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>-->
 
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p><a href="https://github.com/ezietsman" class="user-mention">@ezietsman</a> is helping out with the tricksy coding bits. Yours truly, <a href="https://github.com/nicoladt" class="user-mention">@nicoladt</a>, is doing the eye-candy bits.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/nicoladt/mitthesis/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/nicoladt/mitthesis/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/nicoladt/mitthesis"></a> is maintained by <a href="https://github.com/nicoladt">nicoladt</a>.</p>
-
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+        <!-- Javascript -->
+        <script src="js/jquery-1.10.2.min.js"></script>
+        <script src="./TableSorter/jquery.tablesorter.js"></script>	
+        <script src="js/loadXML.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/DashboardUtils.js"></script>
+    </body>
 </html>
