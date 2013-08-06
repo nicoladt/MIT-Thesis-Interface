@@ -2,24 +2,68 @@
 
 div.annotation-view{
 	border:1px solid;
-	width:5%;
 }
-.annotation-view > div.type{
+
+/*div.type{
 	border:1px solid;
-	width:5%;
-}
-.annotation-view > div.type:before{
+}*/
+
+div.type:before{
 	content:"Type\a";  
 	white-space: pre;
 	font-weight: bold;
 }
 
-.annotation-view > div.url{
-		border:1px solid;
-	width:30%;
-}
-.annotation-view > div.url:before{
+/*div.url{
+	border:1px solid;
+}*/
+
+div.url:before{
 	content:"URL\a";  
 	white-space: pre;
 	font-weight: bold;
+}
+/*
+div.highlighted{
+	border:1px solid;
+}*/
+
+div.highlighted:before{
+	content:"Highlighted text\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+/*div.user-info{
+	border: 1px solid;
+}*/
+
+div.user-info > .comment:before{
+	content:"User comment\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.user-info > .username:before{
+	content:"Username\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.user-info > .datetime:before{
+	content:"Date\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.replies{
+	border-top:2px solid;
+}
+div.replies:before{
+	content:"Replies\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.reply{
+	border-bottom:1px solid;
 }
