@@ -1,10 +1,13 @@
 /*CSS for detailed view of single annotation*/
 
 div.annotation-view{
-	border:1px solid;
+	border:2px solid;
 	padding:7px;
 }
 
+p.type{/*this is a bit of a hack/experiment to colour the content text alone, not the "before" text in this div. The colours would need to change depending on the type*/
+	background-color: #9DF2A9;
+}
 
 div.type:before{
 	content:"Type\a";  
@@ -54,7 +57,7 @@ div.user-info > .datetime:before{
 }
 
 div.replies{
-	border-top:2px solid;
+	border-top:2px solid gray;
 }
 div.replies:before{
 	content:"Replies\a";  
@@ -63,5 +66,5 @@ div.replies:before{
 }
 
 div.reply{
-	border-bottom:1px solid;
+	border-bottom:1px solid gray;
 }
