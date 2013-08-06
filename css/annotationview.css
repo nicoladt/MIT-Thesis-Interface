@@ -2,11 +2,9 @@
 
 div.annotation-view{
 	border:1px solid;
+	padding:7px;
 }
 
-/*div.type{
-	border:1px solid;
-}*/
 
 div.type:before{
 	content:"Type\a";  
