@@ -10,6 +10,11 @@
 }
 
 
+label.checkbox.all {
+    float:left;
+    margin-right:50px;
+}
+
 
 /* Table Sorter CSS */
 table.tablesorter {

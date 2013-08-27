@@ -241,11 +241,10 @@ var DashUtils = {
                 for (var s in field) {
                     var divclass = field[s].replace(' ', '').toLowerCase();
                     var label = $("<div></div");
-                    label.fadeTo(10, 0.5);
                     label.addClass('filter');
                     label.addClass(divclass);
                     label.text(' ' + field[s]);
-                    label.prepend($('<input type="checkbox"/>'));
+                    label.prepend($('<input type="checkbox" checked/>'));
                     subjectdiv.append(label);
                 }
             }
@@ -275,29 +274,44 @@ var DashUtils = {
     registerEventHandlers: function () {
         // functionality for the 'all' checkbox in the filterboxes
         // if all is checked, select all in filterbox
-        // if all is unchecjed, uncheck all in filterbox
+        // if all is unchecked, uncheck all in filterbox
         $('.checkbox.all > input').on('click', function (event) {
             if (this.checked === true){
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', false)
-                    $(this).parent().fadeTo(50, 0.5);
+                    $(this).prop('checked', true)
                     });
+                
+                //uncheck the None button
+                $(this).parent().siblings('.checkbox.none').children('input').prop('checked', false);
 
                 // update the table and filter boxes
                 DashUtils.populateAnnotationTable(annotationList);
                 DashUtils.setupFilterBoxes(annotationList);
             }
-            else {
-                // make all siblings checked too
+//           else {
+//               // make all siblings checked too
+//               $(this).parent().siblings('div').children('input')
+//               .each(function(){
+//                   $(this).prop('checked', false);
+//                   $(this).parent().fadeTo(50, 1.0);
+//                   });
+//           }
+        });
+        // Handle the None button
+        $('.checkbox.none > input').on('click', function (event) {
+            if (this.checked === true){
+                var allbutton = $(this).parent().siblings('.checkbox.all');
+                allbutton.children('input').prop('checked', false);
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', false);
-                    $(this).parent().fadeTo(50, 1.0);
+                    $(this).prop('checked', false)
                     });
+
             }
-        });
+
+        }); // end of none checkbox handler
 
         // If any other filter button is unchecked, uncheck the all button too
         $('div > input').on('click', function (event){
@@ -313,10 +327,10 @@ var DashUtils = {
                 }
 
                 });
-            // if the allbutton changes state, trigger the change event on it
-            if (allbutton.prop('checked') !== state){
-                $(this).parent().parent().find('.checkbox.all > input').trigger('change');
-            }
+//           // if the allbutton changes state, trigger the change event on it
+//           if (allbutton.prop('checked') !== state){
+//               $(this).parent().parent().find('.checkbox.all > input').trigger('change');
+//           }
 
 
 
