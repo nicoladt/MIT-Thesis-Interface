@@ -245,7 +245,7 @@ var DashUtils = {
                     label.addClass('filter');
                     label.addClass(divclass);
                     label.text(' ' + field[s]);
-                    label.prepend($('<input type="checkbox"/>'));
+                    label.prepend($('<input type="checkbox" checked/>'));
                     subjectdiv.append(label);
                 }
             }
@@ -281,7 +281,7 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', false)
+                    $(this).prop('checked', true)
                     $(this).parent().fadeTo(50, 0.5);
                     });
 
@@ -303,21 +303,39 @@ var DashUtils = {
         $('div > input').on('click', function (event){
             var allbutton = $(this).parent().parent().find('.checkbox.all > input');
             var state = allbutton.prop('checked');
-            $(this).parent().parent().find('div > input').each(function(){
-                if (!$(this).prop("checked")){
-                   var allbutton = $(this).parent().parent().children('label').children('input');
-                   allbutton.prop('checked',false);
-                   // unfade the other checkboxes
-                   $(this).parent().siblings('div').fadeTo(50, 1.0);
-                   $(this).parent().fadeTo(50, 1.0);
-                }
 
-                });
-            // if the allbutton changes state, trigger the change event on it
-            if (allbutton.prop('checked') !== state){
-                $(this).parent().parent().find('.checkbox.all > input').trigger('change');
+            if (state === true){
+                console.log('clicked filter, allbutton checked');
+                // make the one clicked on checked
+                $(this).prop('checked', true);
+                allbutton.prop('checked', false);
+                allbutton.trigger('change'); 
+                $(this).parent().siblings('div').fadeTo(50, 1.0);
+                $(this).parent().fadeTo(50, 1.0);
+                // uncheck the other filter boxes
+                $(this).parent().siblings('div').children('input').each(function(){
+                    $(this).prop('checked', false);
+                    });
+
             }
+            else {
+                // if the all button is not checked.
+                $(this).parent().parent().find('div > input').each(function(){
+                    if (!$(this).prop("checked")){
+                       var allbutton = $(this).parent().parent().children('label').children('input');
+                       allbutton.prop('checked',false);
+                       // unfade the other checkboxes
+                       $(this).parent().siblings('div').fadeTo(50, 1.0);
+                       $(this).parent().fadeTo(50, 1.0);
+                    }
 
+                    });
+
+               //// if the allbutton changes state, trigger the change event on it
+               //if (allbutton.prop('checked') !== state){
+               //    $(this).parent().parent().find('.checkbox.all > input').trigger('change');
+               //}
+            }   
 
 
         });
@@ -361,7 +379,7 @@ var DashUtils = {
 			$(this).prop("checked", true);
 		});
 		$('div.filter > input').each(function(){
-			$(this).prop('checked', false);
+			$(this).prop('checked', true);
                    	$(this).parent().fadeTo(50, 0.5);
 		});
 	
@@ -369,7 +387,7 @@ var DashUtils = {
 	
 
 	    DashUtils.populateAnnotationTable(annotationList);
-            DashUtils.setupFilterBoxes(annotationList);
+        DashUtils.setupFilterBoxes(annotationList);
 
         });
     },
