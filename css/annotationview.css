@@ -2,7 +2,6 @@
 
 div.annotation-view{
 	border:2px solid;
-	border-radius: 10px;
 	padding:7px;
 }
 
@@ -16,18 +15,28 @@ div.type:before{
 	font-weight: bold;
 }
 
+/*div.url{
+	border:1px solid;
+}*/
 
 div.url:before{
 	content:"URL\a";  
 	white-space: pre;
 	font-weight: bold;
 }
+/*
+div.highlighted{
+	border:1px solid;
+}*/
 
 div.highlighted:before{
 	content:"Highlighted text\a";  
 	white-space: pre;
 	font-weight: bold;
 }
+/*div.user-info{
+	border: 1px solid;
+}*/
 
 div.user-info > .comment:before{
 	content:"User comment\a";  
