@@ -275,7 +275,7 @@ var DashUtils = {
     registerEventHandlers: function () {
         // functionality for the 'all' checkbox in the filterboxes
         // if all is checked, select all in filterbox
-        // if all is unchecjed, uncheck all in filterbox
+        // if all is unchecked, uncheck all in filterbox
         $('.checkbox.all > input').on('click', function (event) {
             if (this.checked === true){
                 // make all siblings checked too
@@ -351,6 +351,25 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
+
+        });
+
+        // When reset button is clicked, "All" checkboxes are selected
+        $('#reset-button').on("click", function() {
+		$('label.checkbox.all > input').each(function(){
+			$(this).trigger("clicked");
+			$(this).prop("checked", true);
+		});
+		$('div.filter > input').each(function(){
+			$(this).prop('checked', false);
+                   	$(this).parent().fadeTo(50, 0.5);
+		});
+	
+            console.log("Reset all the things");
+	
+
+	    DashUtils.populateAnnotationTable(annotationList);
+            DashUtils.setupFilterBoxes(annotationList);
 
         });
     },
