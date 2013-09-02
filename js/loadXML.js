@@ -9,7 +9,7 @@ annotationList = new Array();
 
 $.ajax({
     type:"GET", 
-    url: "../data/annotations.xml",
+    url: "data/annotations.xml",
     async:false,
     dataType: "xml",
     success: function(data){
