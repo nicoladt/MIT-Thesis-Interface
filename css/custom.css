@@ -76,8 +76,17 @@ div.chapter-filter > div.filter{
 	width:33%;
 	float: left;
 }
-
-#reset-button{
-	float:center;
-	padding: 10px;
+/*Styles for username search box*/
+div.search{
+	margin-left: 5px;
+	width:100%;
 }
+/*Styles for reset button*/
+
+div.reset{
+	text-align:center;
+	border-top: 1px solid gray;
+	padding:15px;
+	border-radius:0px;	
+}
+
