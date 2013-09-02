@@ -58,14 +58,20 @@ background-color: #8dbdd8;
 
 /* Annotation styles in table */
 
-.annotation-entry > div.subject, .grade, .chapternumber, .chaptertitle {
+.annotation-entry > div.subject, .grade, .chapternumber{
     font-size: 100%;
     float:left;
     font-weight:bold;
 }
 
+.annotation-entry >	div.chaptertitle{
+	clear-right;
+    font-size: 100%;
+    font-weight:bold;
+	}
+
 div.subject {
-    width:33%;
+    width:25%;
 }
 
 div.grade, div.chapternumber {
@@ -76,6 +82,8 @@ div.chapter-filter > div.filter{
 	width:33%;
 	float: left;
 }
+
+
 /*Styles for username search box*/
 div.search{
 	margin-left: 5px;
@@ -87,6 +95,6 @@ div.reset{
 	text-align:center;
 	border-top: 1px solid gray;
 	padding:15px;
-	border-radius:0px;	
+	border-radius:0px;	chapter
 }
 
