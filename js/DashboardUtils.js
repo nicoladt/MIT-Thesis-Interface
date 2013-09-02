@@ -293,7 +293,7 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', false);
+                    //$(this).prop('checked', false);
                     $(this).parent().fadeTo(50, 1.0);
                     });
             }
