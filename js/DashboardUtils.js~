@@ -147,11 +147,7 @@ var DashUtils = {
         }
 
 $("table").tablecloth({
-          theme: "paper",
-          striped: true,
-          sortable: true,
-          condensed: true
-        });
+          theme: "paper" });
            //TODO Call the table sorter to update the table 
     },
 

@@ -53,5 +53,5 @@ $.ajax({
     }
  });
 
-
+$("table").tablecloth({ theme: "default" });
 
