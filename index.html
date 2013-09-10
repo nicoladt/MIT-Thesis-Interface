@@ -7,7 +7,11 @@
        
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/custom.css" rel="stylesheet" media="screen">
+  	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+        
+	 <link href="css/tablecloth.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet"> 
+<link href="css/custom.css" rel="stylesheet" media="screen">
     </head>
     <body>
         <h1>Annotation Filter</h1>
@@ -50,7 +54,7 @@
 
         </div>
         <div class="span12 annotation-container">
-            <table border=1 class="annotation-table tablesorter">
+            <table cellspacing="1" cellpadding="3" class="tablehead annotation-table" style="background:#CCC;">
               <thead>
                 <tr>
                     <th width="10%">Type</th>
@@ -58,8 +62,21 @@
                     <th width="10%">Replies</th>
                     <th width="15%">Date</th>
                 </tr>
+
              </thead>
-             <tbody>
+             <tbody> 
+	 <tr>
+                    <td>errata</td>
+                    <td>bAnnotation information</td>
+                    <td>2</td>
+                    <td>12-04-2013</td>
+                </tr> 
+	<tr>
+                    <td>suggestion</td>
+                    <td>nAnnotation information</td>
+                    <td>3</td>
+                    <td>15-04-2013</td>
+                </tr>
              </tbody>
                
             </table>
@@ -70,9 +87,14 @@
 
         <!-- Javascript -->
         <script src="js/jquery-1.10.2.min.js"></script>
-        <script src="./TableSorter/jquery.tablesorter.js"></script>	
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.metadata.js"></script>
+    <script src="js/jquery.tablesorter.min.js"></script>
+    <script src="js/jquery.tablecloth.js"></script>
         <script src="js/loadXML.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/DashboardUtils.js"></script>
+	<script src="js/DashboardUtils.js"></script>
+	
+
+
     </body>
 </html>
