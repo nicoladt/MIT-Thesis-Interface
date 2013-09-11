@@ -416,6 +416,76 @@ var DashUtils = {
         DashUtils.setupFilterBoxes(annotationList);
 
         });
+
+        // when a row in the table is clicked.
+        $('.annotation-table tr').on('click', function(){
+            //do stuff.
+            //
+            
+            
+        });
+    },
+
+    // build the detailed annotation view
+    getDetailedAnnotationView: function(annotation){
+        var annotationtemplate = 
+        ['<div class="annotation-view span11">',
+		'<div class="row-fluid">',
+'			<div class="type span2">',
+'			<p class="type">{{type}}</p>',
+'			</div>',
+'			<div class="annotation-info span10">',
+'			<!--Note: please can we include chapter number and name here, as they appear in the table?-->',
+'				<div class ="url">',
+'				<a href="{{url}}">{{url}}</a>',
+'				</div>',
+'				<div class="highlighted">',
+'				{{highlighted}}',
+'				</div>',
+'				<div class="user-info row-fluid">',
+'					<div class="comment span6">',
+'					{{comment}}',
+'					</div>',
+'					<div class="username span2">',
+'					{{username}}',
+'					</div>',
+'					<div class="datetime span4">',
+'					{{datetime}}',
+'					</div>',
+'				</div>',
+'			</div>',
+'		</div>',
+' {{replies}}',
+'		</div>',
+'	</div>'].join('\n');
+    var replytemplate = 
+    ['				<div class="reply row-fluid">',
+'					<div class="comment span4 offset1">',
+'					It\'s in the Physics book. This is only Maths.',
+'					</div>',
+'					<div class="username span2 offset1">',
+'					ted',
+'					</div>',
+'					<div class="datetime span4">',
+'					2013-07-04T13:01:30+02:00',
+'					</div>',
+'				</div>',
+'			</div>'].join('\n');
+
+//TODO render the replies here
+// must loop through the replies in the annotation
+
+    var view = {
+        'type': annotation.type,
+        'highlighted' : annotation.highlight,
+        'url' : annotation.url,
+        'username' : annotation.username,
+        'comment' : annotation.comment,
+        'datetime' : annotation.time,
+    };
+
+    var output = Mustache.render(template, view);
+    return output;
     },
 
 
