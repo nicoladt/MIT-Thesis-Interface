@@ -146,6 +146,15 @@ var DashUtils = {
             table.append(row);
         }
            //TODO Call the table sorter to update the table 
+        
+        // if table is empty, place a message in the table.
+        var tableLength = $('.annotation-table tr').length;
+
+        if (tableLength == 1) {
+            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+            table.append(row);
+        }
+
     },
 
     /* Remove all entries from the table */
