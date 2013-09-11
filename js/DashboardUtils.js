@@ -100,7 +100,10 @@ var DashUtils = {
      */
     populateAnnotationTable: function(annotations) {
         var table = $('.annotation-table');
-
+        var entrytypes = new Array();
+        entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
+        entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
+        entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
         DashUtils.clearAnnotationTable();
         
         var i;
@@ -109,7 +112,8 @@ var DashUtils = {
             var annotation = annotations[i];
             // type column only gets the type
             var typeentry = $('<td></td>');
-            typeentry.html(annotation.type);
+            // add a bootstrap badge to show the type of annotation
+            typeentry.append(entrytypes[annotation.type].clone());
             
             // annotation info gets 7 divs
             var subjectdiv = $('<div class="subject"></div>').text(annotation.subject);
@@ -244,9 +248,23 @@ var DashUtils = {
                     label.fadeTo(10, 0.5);
                     label.addClass('filter');
                     label.addClass(divclass);
-                    label.text(' ' + field[s]);
-                    label.prepend($('<input type="checkbox" checked/>'));
+                    // add colour for type of filter.
+                    if (fieldname === 'type'){
+                        var entrytypes = new Array();
+                        entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
+                        entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
+                        entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
+                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.append(entrytypes[field[s]]);
+                        
+                    }
+                    else{
+                        label.text(' ' + field[s]);
+                        label.prepend($('<input type="checkbox" checked/>'));
+                    }
                     subjectdiv.append(label);
+
+                    
                 }
             }
         }
@@ -305,7 +323,6 @@ var DashUtils = {
             var state = allbutton.prop('checked');
 
             if (state === true){
-                console.log('clicked filter, allbutton checked');
                 // make the one clicked on checked
                 $(this).prop('checked', true);
                 allbutton.prop('checked', false);
