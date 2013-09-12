@@ -420,7 +420,7 @@ var DashUtils = {
         // when a row in the table is clicked.
         $('.annotation-table tr').on('click', function(){
             //do stuff.
-            //
+            //find the annotation that corresponds to that row.
             
             
         });
@@ -455,36 +455,48 @@ var DashUtils = {
 '				</div>',
 '			</div>',
 '		</div>',
-' {{replies}}',
-'		</div>',
-'	</div>'].join('\n');
+' {{{replies}}}',
+'		</div>'].join('\n');
+
     var replytemplate = 
     ['				<div class="reply row-fluid">',
-'					<div class="comment span4 offset1">',
-'					It\'s in the Physics book. This is only Maths.',
-'					</div>',
-'					<div class="username span2 offset1">',
-'					ted',
-'					</div>',
-'					<div class="datetime span4">',
-'					2013-07-04T13:01:30+02:00',
-'					</div>',
-'				</div>',
-'			</div>'].join('\n');
+'			    		<div class="comment span4 offset1">',
+'		    	    		{{comment}}',
+'				    	</div>',
+'				    	<div class="username span2 offset1">',
+'	    		    		{{user}}',
+'				    	</div>',
+'				    	<div class="datetime span4">',
+'   			    		{{time}}',
+'				    	</div>',
+'				    </div>'].join('\n');
 
 //TODO render the replies here
 // must loop through the replies in the annotation
+    var replyviews = new Array();
+    var i;
+    for (i=0; i < annotation.replies.length; i++){
+        var reply = annotation.replies[i];
+        var replyview = {
+            'comment':reply.comment,
+            'user':reply.username,
+            'time':reply.time
+        };
+        replyviews.push(Mustache.render(replytemplate, replyview));
+    };
 
-    var view = {
+
+    var annotationview = {
         'type': annotation.type,
         'highlighted' : annotation.highlight,
         'url' : annotation.url,
         'username' : annotation.username,
         'comment' : annotation.comment,
         'datetime' : annotation.time,
+        'replies' : replyviews.join('\n')
     };
 
-    var output = Mustache.render(template, view);
+    var output = Mustache.render(annotationtemplate, annotationview);
     return output;
     },
 
