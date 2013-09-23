@@ -421,16 +421,53 @@ var DashUtils = {
         $('.annotation-table tr').on('click', function(){
             //do stuff.
             //find the annotation that corresponds to that row.
+            var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
+            var datetime = $(this).find('td.date-entry').text();
+            var _id = highlighted + datetime;
+            var Found = false;
+            var i = 0;
+            var _ann_id;
+
+            while (Found === false){
+                _ann_id = annotationList[i].highlight + annotationList[i].time;
+                if (_ann_id === _id){
+                    Found = true;
+                }
+                else {
+                    i++;
+
+                };
+            };
+
+            var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
+
+            // Find the detailed view div and insert the detailed html into that
+            $('div.detailed-view').empty().append(detailed_html);
             
+            // when the detailed view close button is clicked
+            $('#popovercloseid').on('click', function(){
+                // Find the detailed view div and insert the detailed html into that
+                $('div.detailed-view').empty();
+                $('div.annotation-view').css('visibility', 'hidden');
+                $('.annotation-table').fadeTo(250, 1);
+            });
+
+            $('div.annotation-view').fadeTo(0, 0);
+            $('div.annotation-view').css('visibility', 'visible');
+            $('div.annotation-view').fadeTo(250, 1.0);
+            $('.annotation-table').fadeTo(250, 0.1);
             
         });
+    
     },
+
 
     // build the detailed annotation view
     getDetailedAnnotationView: function(annotation){
         var annotationtemplate = 
         ['<div class="annotation-view span11">',
 		'<div class="row-fluid">',
+'           <button id="popovercloseid" type="button" class="close">&times;</button>',
 '			<div class="type span2">',
 '			<p class="type">{{type}}</p>',
 '			</div>',

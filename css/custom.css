@@ -12,6 +12,23 @@ h1{
 }
 
 
+/* Detailed view */
+.detailed-view {
+    position:fixed;
+    left:25%;
+    top:25%;
+    z-index:100;
+}
+div.annotation-view{
+    visibility:hidden;
+    position: absolute;
+    background-color: white;
+    left:25%;
+    border:solid lightblue;
+    padding: 12px;
+    z-index:100;
+}
+
 
 /* Table Sorter CSS */
 table.tablesorter {
