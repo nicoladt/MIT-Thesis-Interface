@@ -17,6 +17,7 @@ h1{
     position:fixed;
     z-index:99;
 }
+
 div.annotation-view{
     visibility:hidden;
     position: absolute;
@@ -26,8 +27,74 @@ div.annotation-view{
     border:solid lightblue;
     padding: 12px;
     z-index:100;
+	border:2px solid;
 }
 
+/*CSS for detailed view of single annotation*/
+
+p.type{/*this is a bit of a hack/experiment to colour the content text alone, not the "before" text in this div. The colours would need to change depending on the type*/
+	background-color: #9DF2A9;
+}
+
+div.type:before{
+	content:"Type\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+/*div.url{
+	border:1px solid;
+}*/
+
+div.url:before{
+	content:"URL\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+/*
+div.highlighted{
+	border:1px solid;
+}*/
+
+div.highlighted:before{
+	content:"Highlighted text\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+/*div.user-info{
+	border: 1px solid;
+}*/
+
+div.user-info > .comment:before{
+	content:"User comment\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.user-info > .username:before{
+	content:"Username\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.user-info > .datetime:before{
+	content:"Date\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.replies{
+	border-top:2px solid gray;
+}
+div.replies:before{
+	content:"Replies\a";  
+	white-space: pre;
+	font-weight: bold;
+}
+
+div.reply{
+	border-bottom:1px solid gray;
+}
 
 /* Table Sorter CSS */
 table.tablesorter {
