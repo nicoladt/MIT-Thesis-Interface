@@ -15,14 +15,13 @@ h1{
 /* Detailed view */
 .detailed-view {
     position:fixed;
-    left:25%;
-    top:25%;
-    z-index:100;
+    z-index:99;
 }
 div.annotation-view{
     visibility:hidden;
     position: absolute;
     background-color: white;
+    top:25%;
     left:25%;
     border:solid lightblue;
     padding: 12px;

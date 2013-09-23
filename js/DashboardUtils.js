@@ -445,13 +445,16 @@ var DashUtils = {
             $('div.detailed-view').empty().append(detailed_html);
             
             // when the detailed view close button is clicked
+            // register this click event
             $('#popovercloseid').on('click', function(){
                 // Find the detailed view div and insert the detailed html into that
                 $('div.detailed-view').empty();
                 $('div.annotation-view').css('visibility', 'hidden');
                 $('.annotation-table').fadeTo(250, 1);
+                $('div.detailed-view').css('width','0').css('height','0');
             });
-
+            
+            $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
             $('div.annotation-view').fadeTo(0, 0);
             $('div.annotation-view').css('visibility', 'visible');
             $('div.annotation-view').fadeTo(250, 1.0);
