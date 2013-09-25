@@ -469,8 +469,8 @@ var DashUtils = {
     getDetailedAnnotationView: function(annotation){
         var annotationtemplate = 
         ['<div class="annotation-view span11">',
-		'<div class="row-fluid">',
-'           <button id="popovercloseid" type="button" class="close">&times;</button>',
+'           <div class="row-fluid"><button id="popovercloseid" type="button" class="close">&times;</button></div>',
+'           <div class="row-fluid">',
 '			<div class="type span2">',
 '			<p class="type">{{type}}</p>',
 '			</div>',
@@ -499,7 +499,10 @@ var DashUtils = {
 '		</div>'].join('\n');
 
     var replytemplate = 
-    ['				<div class="reply row-fluid">',
+[
+'       <div class="row-fluid">',
+'           <div class="replies offset2">',
+'				<div class="reply row-fluid">',
 '			    		<div class="comment span4 offset1">',
 '		    	    		{{comment}}',
 '				    	</div>',
@@ -509,7 +512,9 @@ var DashUtils = {
 '				    	<div class="datetime span4">',
 '   			    		{{time}}',
 '				    	</div>',
-'				    </div>'].join('\n');
+'				    </div>',
+'               </div>',
+'           </div>'].join('\n');
 
 //TODO render the replies here
 // must loop through the replies in the annotation

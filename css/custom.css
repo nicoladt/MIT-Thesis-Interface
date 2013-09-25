@@ -181,3 +181,7 @@ div.reset{
 	border-radius:0px;	chapter
 }
 
+/* close button */
+#popovercloseid {
+    clear:both;
+}
