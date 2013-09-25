@@ -84,6 +84,7 @@ div.user-info > .datetime:before{
 div.replies{
 	border-top:2px solid gray;
 }
+
 div.replies:before{
 	content:"Replies\a";  
 	white-space: pre;
@@ -139,13 +140,13 @@ background-color: #8dbdd8;
 
 /* Annotation styles in table */
 
-.annotation-entry > div.subject, .grade, .chapternumber{
+div.subject, .grade, .chapternumber{
     font-size: 100%;
     float:left;
     font-weight:bold;
 }
 
-.annotation-entry >	div.chaptertitle{
+div.chaptertitle{
 	clear-right;
     font-size: 100%;
     font-weight:bold;

@@ -472,11 +472,23 @@ var DashUtils = {
 '           <div class="row-fluid"><button id="popovercloseid" type="button" class="close">&times;</button></div>',
 '           <div class="row-fluid">',
 '			<div class="type span2">',
-'			<p class="type">{{type}}</p>',
+'			{{{typebadge}}}',
 '			</div>',
 '			<div class="annotation-info span10">',
 '			<!--Note: please can we include chapter number and name here, as they appear in the table?-->',
-'				<div class ="url">',
+'               <div class="subject">',
+'               {{subject}}',
+'               </div>',
+'               <div class="grade">',
+'               {{grade}}',
+'               </div>',
+'               <div class="chapternumber">',
+'               {{chapternumber}}',
+'               </div>',
+'               <div class="chaptertitle">',
+'               {{chaptertitle}}',
+'               </div>',
+'				<div class="url">',
 '				<a href="{{url}}">{{url}}</a>',
 '				</div>',
 '				<div class="highlighted">',
@@ -495,13 +507,15 @@ var DashUtils = {
 '				</div>',
 '			</div>',
 '		</div>',
-' {{{replies}}}',
+'       <div class="row-fluid">',
+'           <div class="replies offset2">',
+'                {{{replies}}}',
+'			    </div>',
+'              </div>',
 '		</div>'].join('\n');
 
     var replytemplate = 
 [
-'       <div class="row-fluid">',
-'           <div class="replies offset2">',
 '				<div class="reply row-fluid">',
 '			    		<div class="comment span4 offset1">',
 '		    	    		{{comment}}',
@@ -512,9 +526,8 @@ var DashUtils = {
 '				    	<div class="datetime span4">',
 '   			    		{{time}}',
 '				    	</div>',
-'				    </div>',
-'               </div>',
-'           </div>'].join('\n');
+'           </div>',
+].join('\n');
 
 //TODO render the replies here
 // must loop through the replies in the annotation
@@ -530,14 +543,23 @@ var DashUtils = {
         replyviews.push(Mustache.render(replytemplate, replyview));
     };
 
+    var entrytypes = new Array();
+    entrytypes['errata'] = '<span class="badge badge-important">Errata</span>';
+    entrytypes['suggestion'] = '<span class="badge badge-info">Suggestion</span>';
+    entrytypes['comment'] = '<span class="badge badge-success">Comment</span>';
 
     var annotationview = {
-        'type': annotation.type,
+        'subject': annotation.subject,
+        'grade': annotation.grade,
+        'chapternumber': annotation.chapter,
+        'chaptertitle': annotation.chaptertitle,
+        'type': DashUtils.capitaliseFirstLetter(annotation.type),
         'highlighted' : annotation.highlight,
         'url' : annotation.url,
         'username' : annotation.username,
         'comment' : annotation.comment,
         'datetime' : annotation.time,
+        'typebadge': entrytypes[annotation.type],
         'replies' : replyviews.join('\n')
     };
 
