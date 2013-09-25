@@ -444,7 +444,10 @@ var DashUtils = {
             // Find the detailed view div and insert the detailed html into that
             $('div.detailed-view').empty().append(detailed_html);
             
-            // when the detailed view close button is clicked
+            // when the detailed view close button is clicked (or esc)
+            $(document).keyup(function(e) {
+              if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
+            });
             // register this click event
             $('#popovercloseid').on('click', function(){
                 // Find the detailed view div and insert the detailed html into that
