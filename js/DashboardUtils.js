@@ -418,8 +418,8 @@ var DashUtils = {
         });
 
         // when a row in the table is clicked.
-        $('.annotation-table tr').on('click', function(){
-            //do stuff.
+        $('table').delegate('tr', 'click', function(){
+            console.log('clicked table row');
             //find the annotation that corresponds to that row.
             var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
             var datetime = $(this).find('td.date-entry').text();
