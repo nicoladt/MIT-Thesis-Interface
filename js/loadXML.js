@@ -21,7 +21,7 @@ $.ajax({
         $xml = $(xmlDoc);
         $(xml).find("annotation").each( function (index){
             var url = $(this).find('url');
-            var username = $(this).find('username');
+            var username = $(this).children('username');
             var datetime = $(this).find('annotation>datetime');
             var highlighted = $(this).find('highlighted');
             var comment = $(this).find('annotation>comment');
