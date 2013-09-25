@@ -1,6 +1,10 @@
 h1{
 	padding: 15px;
 }
+
+tr{
+    padding:10px;
+}
 .annotation-entry > div.highlighted:before{
     content:"Highlighted text: ";
     font-weight: bold;
@@ -40,12 +44,9 @@ div.type:before{
 	font-weight: bold;
 }
 
-/*div.url{
-	border:1px solid;
-}*/
 
 div.url:before{
-	content:"URL\a";  
+	content:"URL: ";  
 	white-space: pre;
 	font-weight: bold;
 }
@@ -156,8 +157,12 @@ div.subject {
     width:25%;
 }
 
-div.grade, div.chapternumber {
-    width:15%;
+div.chapternumber {
+    width:8%;
+}
+
+div.grade {
+    width: 15%;
 }
 
 div.chapter-filter > div.filter{
