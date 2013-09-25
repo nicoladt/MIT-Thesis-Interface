@@ -32,9 +32,7 @@ div.annotation-view{
 
 /*CSS for detailed view of single annotation*/
 
-p.type{/*this is a bit of a hack/experiment to colour the content text alone, not the "before" text in this div. The colours would need to change depending on the type*/
-	background-color: #9DF2A9;
-}
+
 
 div.type:before{
 	content:"Type\a";  
