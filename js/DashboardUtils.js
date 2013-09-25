@@ -100,7 +100,10 @@ var DashUtils = {
      */
     populateAnnotationTable: function(annotations) {
         var table = $('.annotation-table');
-
+        var entrytypes = new Array();
+        entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
+        entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
+        entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
         DashUtils.clearAnnotationTable();
         
         var i;
@@ -109,7 +112,8 @@ var DashUtils = {
             var annotation = annotations[i];
             // type column only gets the type
             var typeentry = $('<td></td>');
-            typeentry.html(annotation.type);
+            // add a bootstrap badge to show the type of annotation
+            typeentry.append(entrytypes[annotation.type].clone());
             
             // annotation info gets 7 divs
             var subjectdiv = $('<div class="subject"></div>').text(annotation.subject);
@@ -146,6 +150,15 @@ var DashUtils = {
             table.append(row);
         }
            //TODO Call the table sorter to update the table 
+        
+        // if table is empty, place a message in the table.
+        var tableLength = $('.annotation-table tr').length;
+
+        if (tableLength == 1) {
+            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+            table.append(row);
+        }
+
     },
 
     /* Remove all entries from the table */
@@ -244,9 +257,23 @@ var DashUtils = {
                     label.fadeTo(10, 0.5);
                     label.addClass('filter');
                     label.addClass(divclass);
-                    label.text(' ' + field[s]);
-                    label.prepend($('<input type="checkbox" checked/>'));
+                    // add colour for type of filter.
+                    if (fieldname === 'type'){
+                        var entrytypes = new Array();
+                        entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
+                        entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
+                        entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
+                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.append(entrytypes[field[s]]);
+                        
+                    }
+                    else{
+                        label.text(' ' + field[s]);
+                        label.prepend($('<input type="checkbox" checked/>'));
+                    }
                     subjectdiv.append(label);
+
+                    
                 }
             }
         }
@@ -305,7 +332,6 @@ var DashUtils = {
             var state = allbutton.prop('checked');
 
             if (state === true){
-                console.log('clicked filter, allbutton checked');
                 // make the one clicked on checked
                 $(this).prop('checked', true);
                 allbutton.prop('checked', false);
@@ -390,6 +416,158 @@ var DashUtils = {
         DashUtils.setupFilterBoxes(annotationList);
 
         });
+
+        // when a row in the table is clicked.
+        $('.annotation-table tr').on('click', function(){
+            //do stuff.
+            //find the annotation that corresponds to that row.
+            var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
+            var datetime = $(this).find('td.date-entry').text();
+            var _id = highlighted + datetime;
+            var Found = false;
+            var i = 0;
+            var _ann_id;
+
+            while (Found === false){
+                _ann_id = annotationList[i].highlight + annotationList[i].time;
+                if (_ann_id === _id){
+                    Found = true;
+                }
+                else {
+                    i++;
+
+                };
+            };
+
+            var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
+
+            // Find the detailed view div and insert the detailed html into that
+            $('div.detailed-view').empty().append(detailed_html);
+            
+            // when the detailed view close button is clicked (or esc)
+            $(document).keyup(function(e) {
+              if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
+            });
+            // register this click event
+            $('#popovercloseid').on('click', function(){
+                // Find the detailed view div and insert the detailed html into that
+                $('div.detailed-view').empty();
+                $('div.annotation-view').css('visibility', 'hidden');
+                $('.annotation-table').fadeTo(250, 1);
+                $('div.detailed-view').css('width','0').css('height','0');
+            });
+            
+            $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
+            $('div.annotation-view').fadeTo(0, 0);
+            $('div.annotation-view').css('visibility', 'visible');
+            $('div.annotation-view').fadeTo(250, 1.0);
+            $('.annotation-table').fadeTo(250, 0.1);
+            
+        });
+    
+    },
+
+
+    // build the detailed annotation view
+    getDetailedAnnotationView: function(annotation){
+        var annotationtemplate = 
+        ['<div class="annotation-view span11">',
+'           <div class="row-fluid"><button id="popovercloseid" type="button" class="close">&times;</button></div>',
+'           <div class="row-fluid">',
+'			<div class="type span2">',
+'			{{{typebadge}}}',
+'			</div>',
+'			<div class="annotation-info span10">',
+'			<!--Note: please can we include chapter number and name here, as they appear in the table?-->',
+'               <div class="subject">',
+'               {{subject}}',
+'               </div>',
+'               <div class="grade">',
+'               {{grade}}',
+'               </div>',
+'               <div class="chapternumber">',
+'               {{chapternumber}}',
+'               </div>',
+'               <div class="chaptertitle">',
+'               {{chaptertitle}}',
+'               </div>',
+'				<div class="url">',
+'				<a href="{{url}}">{{url}}</a>',
+'				</div>',
+'				<div class="highlighted">',
+'				{{highlighted}}',
+'				</div>',
+'				<div class="user-info row-fluid">',
+'					<div class="comment span6">',
+'					{{comment}}',
+'					</div>',
+'					<div class="username span2">',
+'					{{username}}',
+'					</div>',
+'					<div class="datetime span4">',
+'					{{datetime}}',
+'					</div>',
+'				</div>',
+'			</div>',
+'		</div>',
+'       <div class="row-fluid">',
+'           <div class="replies offset2">',
+'                {{{replies}}}',
+'			    </div>',
+'              </div>',
+'		</div>'].join('\n');
+
+    var replytemplate = 
+[
+'				<div class="reply row-fluid">',
+'			    		<div class="comment span4 offset1">',
+'		    	    		{{comment}}',
+'				    	</div>',
+'				    	<div class="username span2 offset1">',
+'	    		    		{{user}}',
+'				    	</div>',
+'				    	<div class="datetime span4">',
+'   			    		{{time}}',
+'				    	</div>',
+'           </div>',
+].join('\n');
+
+//TODO render the replies here
+// must loop through the replies in the annotation
+    var replyviews = new Array();
+    var i;
+    for (i=0; i < annotation.replies.length; i++){
+        var reply = annotation.replies[i];
+        var replyview = {
+            'comment':reply.comment,
+            'user':reply.username,
+            'time':reply.time
+        };
+        replyviews.push(Mustache.render(replytemplate, replyview));
+    };
+
+    var entrytypes = new Array();
+    entrytypes['errata'] = '<span class="badge badge-important">Errata</span>';
+    entrytypes['suggestion'] = '<span class="badge badge-info">Suggestion</span>';
+    entrytypes['comment'] = '<span class="badge badge-success">Comment</span>';
+
+    var annotationview = {
+        'subject': annotation.subject,
+        'grade': annotation.grade,
+        'chapternumber': annotation.chapter,
+        'chaptertitle': annotation.chaptertitle,
+        'type': DashUtils.capitaliseFirstLetter(annotation.type),
+        'highlighted' : annotation.highlight,
+        'url' : annotation.url,
+        'username' : annotation.username,
+        'comment' : annotation.comment,
+        'datetime' : annotation.time,
+        'typebadge': entrytypes[annotation.type],
+        'replies' : replyviews.join('\n')
+    };
+
+    var output = Mustache.render(annotationtemplate, annotationview);
+    return output;
     },
 
 
