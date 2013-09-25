@@ -138,9 +138,12 @@ var DashUtils = {
             var replyentry = $('<td class="replies-entry"/>');
             replyentry.html(annotation.replies.length);
 
-            // date
+            // date with formatting to make it human legible
             var dateentry = $('<td class="date-entry"/>');
-            dateentry.html(annotation.time);
+             //rework timestamp here
+            var newdatetime = DashUtils.newdatetime(annotation.time);
+            
+            dateentry.html(newdatetime);
             
             // add everything to table
             row.append(typeentry);
@@ -149,6 +152,8 @@ var DashUtils = {
             row.append(dateentry);
             table.append(row);
         }
+
+
            //TODO Call the table sorter to update the table 
         
         // if table is empty, place a message in the table.
@@ -160,6 +165,13 @@ var DashUtils = {
         }
 
     },
+     newdatetime: function(time){
+                var year = time.slice(0,4);
+                var month = time.slice(5,7);
+                var day = time.slice(8,10);
+                var hours = time.slice(14,19);
+                return(day +"/" + month + "/" + year + " " + hours);
+            },
 
     /* Remove all entries from the table */
     clearAnnotationTable: function() {
@@ -429,7 +441,7 @@ var DashUtils = {
             var _ann_id;
 
             while (Found === false){
-                _ann_id = annotationList[i].highlight + annotationList[i].time;
+                _ann_id = annotationList[i].highlight + DashUtils.newdatetime(annotationList[i].time);
                 if (_ann_id === _id){
                     Found = true;
                 }
@@ -541,7 +553,7 @@ var DashUtils = {
         var replyview = {
             'comment':reply.comment,
             'user':reply.username,
-            'time':reply.time
+            'time':DashUtils.newdatetime(reply.time)
         };
         replyviews.push(Mustache.render(replytemplate, replyview));
     };
@@ -561,7 +573,7 @@ var DashUtils = {
         'url' : annotation.url,
         'username' : annotation.username,
         'comment' : annotation.comment,
-        'datetime' : annotation.time,
+        'datetime' : DashUtils.newdatetime(annotation.time),
         'typebadge': entrytypes[annotation.type],
         'replies' : replyviews.join('\n')
     };
