@@ -2,9 +2,6 @@ h1{
 	padding: 15px;
 }
 
-tr{
-    padding:10px;
-}
 .annotation-entry > div.highlighted:before{
     content:"Highlighted text: ";
     font-weight: bold;
