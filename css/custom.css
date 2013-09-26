@@ -18,7 +18,7 @@ h1{
 }
 
 
-/* Deta/*CSS for detailed view of single annotation*/iled view */
+/*CSS for detailed view of single annotation*/
 .detailed-view {
     position:fixed;
     z-index:99;
