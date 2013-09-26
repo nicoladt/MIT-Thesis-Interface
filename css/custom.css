@@ -124,6 +124,12 @@ table.tablesorter tbody td {
 	vertical-align: top;
 }
 
+tbody tr:hover > *{
+
+    background-color:#DDDDDD !important;
+    cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
+   }
+
 table.tablesorter thead tr .headerSortUp {
 	background-image: url(../TableSorter/themes/blue/asc.gif);
 }
