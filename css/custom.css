@@ -1,15 +1,6 @@
-body{
-    width:auto;
-}
-
 h1{
 	padding: 15px;
 }
-
-div.annotation-container{
-    float:center;
-}
-
 
 .annotation-entry > div.highlighted:before{
     content:"Highlighted text: ";
