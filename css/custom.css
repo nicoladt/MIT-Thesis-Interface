@@ -177,8 +177,7 @@ div.chapter-filter > div.filter{
 
 /*Styles for username search box*/
 div.search{
-	margin-left: 5px;
-	width:100%;
+    padding-bottom: 10px;
 }
 /*Styles for reset button*/
 
