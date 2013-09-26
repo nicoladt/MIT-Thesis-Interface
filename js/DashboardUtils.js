@@ -99,6 +99,7 @@ var DashUtils = {
      * annotations: array containing Annotation objects
      */
     populateAnnotationTable: function(annotations) {
+        DashUtils.MyDataTable.fnDestroy();
         var table = $('.annotation-table');
         var entrytypes = new Array();
         entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
@@ -163,6 +164,8 @@ var DashUtils = {
             var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
             table.append(row);
         }
+
+        DashUtils.MyDataTable.dataTable();
 
     },
      newdatetime: function(time){
@@ -617,6 +620,7 @@ var DashUtils = {
     },
 };
 
+DashUtils.MyDataTable = $("table").dataTable(); 
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
