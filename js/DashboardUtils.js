@@ -99,6 +99,7 @@ var DashUtils = {
      * annotations: array containing Annotation objects
      */
     populateAnnotationTable: function(annotations) {
+        DashUtils.MyDataTable.fnDestroy();
         var table = $('.annotation-table');
         var entrytypes = new Array();
         entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
@@ -165,6 +166,8 @@ var DashUtils = {
             var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
             table.append(row);
         }
+
+        DashUtils.MyDataTable.dataTable();
 
     },
     //slices up timestamps to be legible for humans
@@ -432,7 +435,7 @@ var DashUtils = {
         });
 
         // when a row in the table is clicked.
-        $('table').delegate('tr', 'click', function(){
+        $('table tbody').delegate('tr', 'click', function(){
             console.log('clicked table row');
             //find the annotation that corresponds to that row.
             var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
@@ -663,6 +666,7 @@ var DashUtils = {
     },
 };
 
+DashUtils.MyDataTable = $("table").dataTable(); 
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
