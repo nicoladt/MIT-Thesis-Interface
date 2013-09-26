@@ -12,8 +12,13 @@ h1{
     font-weight: bold;
 }
 
+.annotation-entry > div.username:before{
+    content:"Username: ";
+    font-weight: bold;
+}
 
-/* Detailed view */
+
+/* Deta/*CSS for detailed view of single annotation*/iled view */
 .detailed-view {
     position:fixed;
     z-index:99;
@@ -30,10 +35,6 @@ div.annotation-view{
     z-index:100;
 	border:2px solid;
 }
-
-/*CSS for detailed view of single annotation*/
-
-
 
 div.type:before{
 	content:"Type\a";  

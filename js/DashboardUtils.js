@@ -125,6 +125,7 @@ var DashUtils = {
             var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
             var hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
             var commentdiv = $('<div class="comment"/>').html(annotation.comment);
+            var userdiv = $('<div class ="username"/>').html(annotation.username);
 
             annentry.append(subjectdiv);
             annentry.append(gradediv);
@@ -133,6 +134,7 @@ var DashUtils = {
             annentry.append(urldiv);
             annentry.append(hldiv);
             annentry.append(commentdiv);
+            annentry.append(userdiv);
             
             // number of replies
             var replyentry = $('<td class="replies-entry"/>');
@@ -476,9 +478,36 @@ var DashUtils = {
             $('.annotation-table').fadeTo(250, 0.1);
             
         });
+            
+        //When username has been typed in and user hits "enter" key to search
+     $('#username').keyup(function(e) {
+            if (e.keyCode == 13){
+            $('#search').trigger('click');    // enter
+            console.log("Clickety click!");
+            };
+        });
+ 
+    },
     
+    //checks to see if a short string matches the beginning of a long string (for username search)
+    startsWith: function(longString, shortString){
+        var shortLength = shortString.length;
+        if (longString.slice(0, shortLength) == shortString){
+            return true;
+        }
+        else{
+            return false;
+            }
     },
 
+    // $('#username').val(); --> returns text typed into username search box
+     
+    /* var activeUsernameList = new Array(); //makes newArray to contain usernames in table
+    //Runs through table and pushes usernames to above array
+    $('div.username').each(function(){
+        activeUsernameList = names.push(this.innerHTML);
+    });
+     */
 
     // build the detailed annotation view
     getDetailedAnnotationView: function(annotation){
