@@ -167,6 +167,7 @@ var DashUtils = {
         }
 
     },
+    //slices up timestamps to be legible for humans
      newdatetime: function(time){
                 var year = time.slice(0,4);
                 var month = time.slice(5,7);
@@ -409,7 +410,7 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
-
+            $('#username').trigger('keyup');
         });
 
         // When reset button is clicked, "All" checkboxes are selected
@@ -423,9 +424,8 @@ var DashUtils = {
                    	$(this).parent().fadeTo(50, 0.5);
 		});
 	
-            console.log("Reset all the things");
-	
-
+        //clears any username search text that may have been input
+        $('#username').val("")
 	    DashUtils.populateAnnotationTable(annotationList);
         DashUtils.setupFilterBoxes(annotationList);
 
@@ -481,10 +481,32 @@ var DashUtils = {
             
         //When username has been typed in and user hits "enter" key to search
      $('#username').keyup(function(e) {
-            if (e.keyCode == 13){
+            //if (e.keyCode == 13){
             $('#search').trigger('click');    // enter
-            console.log("Clickety click!");
-            };
+               //var activeUsernameList = new Array(); //makes newArray to contain usernames in table
+            
+            var userString = $('#username').val(); //returns text typed into username search box
+            //Resets table display so username search always searches whole table
+            $('tr').each(function(){
+               $(this).show();
+            });
+            //Runs through table and pushes usernames to above array
+            $('div.username').each(function(){
+                //activeUsernameList = names.push(this.innerHTML);
+                var matches = DashUtils.startsWith(this.innerHTML, userString);
+                if(matches != true){
+                    $(this).parent().parent().hide();
+                    }
+                });
+           // };
+           // Surfaces "no results" message/row if username search returns nothing
+           var numOfVisibleRows = $('tr:visible').length;
+           var table = $('.annotation-table');
+           if (numOfVisibleRows == 1) {
+                var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+                table.append(row);
+             }
+           else if (numOfVisibleRows > 1){ $('tr.table-empty-message').hide()}
         });
  
     },
@@ -500,16 +522,11 @@ var DashUtils = {
             }
     },
 
-    // $('#username').val(); --> returns text typed into username search box
-     
-    /* var activeUsernameList = new Array(); //makes newArray to contain usernames in table
-    //Runs through table and pushes usernames to above array
-    $('div.username').each(function(){
-        activeUsernameList = names.push(this.innerHTML);
-    });
-     */
+       
 
-    // build the detailed annotation view
+     
+
+   // build the detailed annotation view
     getDetailedAnnotationView: function(annotation){
         var annotationtemplate = 
         ['<div class="annotation-view span11">',
