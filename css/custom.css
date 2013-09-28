@@ -87,12 +87,9 @@ div.reply{
 	border-bottom:1px solid gray;
 }
 
-div.table{
-    height:500px;
-    overflow:auto;
-    width: 77%;
 
-}
+
+
 
 /* Main Table CSS */
 
@@ -100,10 +97,13 @@ table.annotation-table{
 	font-family :arial;
 	padding: 10px;
 	font-size: 10pt;
-	width: 95%;
+	width: 100%;
 	text-align: left;
 	table-layout:fixed;
 }
+
+
+
 table.annotation-table > thead > tr > th{
 	background-color: #e6EEEE;
 	border: 1px solid #000;
@@ -112,6 +112,8 @@ table.annotation-table > thead > tr > th{
 	text-decoration:underline;
 	
 }
+
+
 
 table.annotation-table > tbody > tr > td{
 	color: #3D3D3D;

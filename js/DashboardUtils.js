@@ -168,8 +168,8 @@ var DashUtils = {
 //      }
 
         DashUtils.MyDataTable = $("table").dataTable({
-            "bPaginate": false
-            });
+            "sScrollY": "500px", "bPaginate": false
+            });new FixedHeader(DashUtils.MyDataTable);
         DashUtils.MyDataTable.fnSort([[3,'desc']]);
        // $('table').css('width', '');
 
@@ -672,8 +672,9 @@ var DashUtils = {
 };
 
 DashUtils.MyDataTable = $("table").dataTable({
-    "bPaginate": false
-    });
+    "sScrollY": "500px", "bPaginate": false
+    }    ); 
+new FixedHeader(DashUtils.MyDataTable);
 DashUtils.MyDataTable.fnSort([[3,'desc']]);
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
