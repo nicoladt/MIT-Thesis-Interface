@@ -168,6 +168,7 @@ var DashUtils = {
         }
 
         DashUtils.MyDataTable.dataTable({"bPaginate": false});
+        DashUtils.MyDataTable.fnSort([[3,'desc']]);
        // $('table').css('width', '');
 
     },
@@ -667,7 +668,8 @@ var DashUtils = {
     },
 };
 
-DashUtils.MyDataTable = $("table").dataTable({"bPaginate": false}); 
+DashUtils.MyDataTable = $("table").dataTable({"bPaginate": false});
+DashUtils.MyDataTable.fnSort([[3,'desc']]);
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
