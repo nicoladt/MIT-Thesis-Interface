@@ -167,8 +167,8 @@ var DashUtils = {
             table.append(row);
         }
 
-        DashUtils.MyDataTable.dataTable();
-        $('table').css('width', '');
+        DashUtils.MyDataTable.dataTable({"bPaginate": false});
+       // $('table').css('width', '');
 
     },
     //slices up timestamps to be legible for humans
@@ -667,7 +667,7 @@ var DashUtils = {
     },
 };
 
-DashUtils.MyDataTable = $("table").dataTable(); 
+DashUtils.MyDataTable = $("table").dataTable({"bPaginate": false}); 
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
