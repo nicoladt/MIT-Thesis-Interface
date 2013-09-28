@@ -90,16 +90,17 @@ div.reply{
 div.table{
     height:500px;
     overflow:auto;
-    width:73%;
+    width: 77%;
 
 }
+
 /* Main Table CSS */
 
 table.annotation-table{
 	font-family :arial;
 	padding: 10px;
 	font-size: 10pt;
-	width: 100%;
+	width: 95%;
 	text-align: left;
 	table-layout:fixed;
 }
