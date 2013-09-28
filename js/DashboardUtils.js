@@ -168,6 +168,7 @@ var DashUtils = {
         }
 
         DashUtils.MyDataTable.dataTable();
+        $('table').css('width', '');
 
     },
     //slices up timestamps to be legible for humans
