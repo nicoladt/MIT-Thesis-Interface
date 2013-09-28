@@ -160,14 +160,16 @@ var DashUtils = {
            //TODO Call the table sorter to update the table 
         
         // if table is empty, place a message in the table.
-        var tableLength = $('.annotation-table tr').length;
+//      var tableLength = $('.annotation-table tr').length;
 
-        if (tableLength == 1) {
-            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
-            table.append(row);
-        }
+//      if (tableLength == 1) {
+//          var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+//          table.append(row);
+//      }
 
-        DashUtils.MyDataTable.dataTable({"bPaginate": false});
+        DashUtils.MyDataTable = $("table").dataTable({
+            "bPaginate": false
+            });
         DashUtils.MyDataTable.fnSort([[3,'desc']]);
        // $('table').css('width', '');
 
@@ -505,13 +507,14 @@ var DashUtils = {
                 });
            // };
            // Surfaces "no results" message/row if username search returns nothing
-           var numOfVisibleRows = $('tr:visible').length;
+           var numOfVisibleRows = $('tbody > tr:visible').length;
            var table = $('.annotation-table');
-           if (numOfVisibleRows == 1) {
-                var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
-                table.append(row);
+            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+            row.attr('id', 'empty-message');
+           if (numOfVisibleRows == 0) {
+               table.append(row);
              }
-           else if (numOfVisibleRows > 1){ $('tr.table-empty-message').hide()}
+           else if (numOfVisibleRows > 1){ $('#empty-message').remove()}
         });
  
     },
@@ -668,7 +671,9 @@ var DashUtils = {
     },
 };
 
-DashUtils.MyDataTable = $("table").dataTable({"bPaginate": false});
+DashUtils.MyDataTable = $("table").dataTable({
+    "bPaginate": false
+    });
 DashUtils.MyDataTable.fnSort([[3,'desc']]);
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
