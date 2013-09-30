@@ -99,6 +99,7 @@ var DashUtils = {
      * annotations: array containing Annotation objects
      */
     populateAnnotationTable: function(annotations) {
+        DashUtils.MyDataTable.fnDestroy();
         var table = $('.annotation-table');
         var entrytypes = new Array();
         entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
@@ -125,6 +126,7 @@ var DashUtils = {
             var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
             var hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
             var commentdiv = $('<div class="comment"/>').html(annotation.comment);
+            var userdiv = $('<div class ="username"/>').html(annotation.username);
 
             annentry.append(subjectdiv);
             annentry.append(gradediv);
@@ -133,6 +135,7 @@ var DashUtils = {
             annentry.append(urldiv);
             annentry.append(hldiv);
             annentry.append(commentdiv);
+            annentry.append(userdiv);
             
             // number of replies
             var replyentry = $('<td class="replies-entry"/>');
@@ -157,14 +160,21 @@ var DashUtils = {
            //TODO Call the table sorter to update the table 
         
         // if table is empty, place a message in the table.
-        var tableLength = $('.annotation-table tr').length;
+//      var tableLength = $('.annotation-table tr').length;
 
-        if (tableLength == 1) {
-            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
-            table.append(row);
-        }
+//      if (tableLength == 1) {
+//          var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+//          table.append(row);
+//      }
+
+        DashUtils.MyDataTable = $("table").dataTable({
+            "sScrollY": "660px", "bPaginate": false
+            });new FixedHeader(DashUtils.MyDataTable);
+        DashUtils.MyDataTable.fnSort([[3,'desc']]);
+       // $('table').css('width', '');
 
     },
+    //slices up timestamps to be legible for humans
      newdatetime: function(time){
                 var year = time.slice(0,4);
                 var month = time.slice(5,7);
@@ -407,7 +417,7 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
-
+            $('#username').trigger('keyup');
         });
 
         // When reset button is clicked, "All" checkboxes are selected
@@ -421,16 +431,15 @@ var DashUtils = {
                    	$(this).parent().fadeTo(50, 0.5);
 		});
 	
-            console.log("Reset all the things");
-	
-
+        //clears any username search text that may have been input
+        $('#username').val("")
 	    DashUtils.populateAnnotationTable(annotationList);
         DashUtils.setupFilterBoxes(annotationList);
 
         });
 
         // when a row in the table is clicked.
-        $('table').delegate('tr', 'click', function(){
+        $('table tbody').delegate('tr', 'click', function(){
             console.log('clicked table row');
             //find the annotation that corresponds to that row.
             var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
@@ -476,11 +485,56 @@ var DashUtils = {
             $('.annotation-table').fadeTo(250, 0.1);
             
         });
+            
+        //When username has been typed in and user hits "enter" key to search
+     $('#username').keyup(function(e) {
+            //if (e.keyCode == 13){
+            $('#search').trigger('click');    // enter
+               //var activeUsernameList = new Array(); //makes newArray to contain usernames in table
+            
+            var userString = $('#username').val(); //returns text typed into username search box
+            //Resets table display so username search always searches whole table
+            $('tr').each(function(){
+               $(this).show();
+            });
+            //Runs through table and pushes usernames to above array
+            $('div.username').each(function(){
+                //activeUsernameList = names.push(this.innerHTML);
+                var matches = DashUtils.startsWith(this.innerHTML, userString);
+                if(matches != true){
+                    $(this).parent().parent().hide();
+                    }
+                });
+           // };
+           // Surfaces "no results" message/row if username search returns nothing
+           var numOfVisibleRows = $('tbody > tr:visible').length;
+           var table = $('.annotation-table');
+            var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
+            row.attr('id', 'empty-message');
+           if (numOfVisibleRows == 0) {
+               table.append(row);
+             }
+           else if (numOfVisibleRows > 1){ $('#empty-message').remove()}
+        });
+ 
+    },
     
+    //checks to see if a short string matches the beginning of a long string (for username search)
+    startsWith: function(longString, shortString){
+        var shortLength = shortString.length;
+        if (longString.slice(0, shortLength) == shortString){
+            return true;
+        }
+        else{
+            return false;
+            }
     },
 
+       
 
-    // build the detailed annotation view
+     
+
+   // build the detailed annotation view
     getDetailedAnnotationView: function(annotation){
         var annotationtemplate = 
         ['<div class="annotation-view span11">',
@@ -617,6 +671,11 @@ var DashUtils = {
     },
 };
 
+DashUtils.MyDataTable = $("table").dataTable({
+    "sScrollY": "660px", "bPaginate": false
+    }    ); 
+new FixedHeader(DashUtils.MyDataTable);
+DashUtils.MyDataTable.fnSort([[3,'desc']]);
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);

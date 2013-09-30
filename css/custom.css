@@ -1,5 +1,29 @@
 h1{
-	padding: 15px;
+    font-size: 20px;
+    line-height:20px;
+}
+
+h3{
+    font-size:16px;
+    line-height: 17px;
+    padding-top:5px;
+}
+
+body{
+    font-size:10pt;
+}
+
+.span12 {
+width: 75%;
+}
+
+div.filters-container{
+    padding-right:20px;
+    z-index:999;
+}
+label.checkbox.all.filter{
+    font-size: 10pt;
+   
 }
 
 .annotation-entry > div.highlighted:before{
@@ -12,11 +36,20 @@ h1{
     font-weight: bold;
 }
 
+.annotation-entry > div.username:before{
+    content:"Username: ";
+    font-weight: bold;
+}
 
-/* Detailed view */
+/*CSS for detailed view of single annotation*/
 .detailed-view {
     position:fixed;
     z-index:99;
+}
+
+/* close button */
+#popovercloseid {
+    clear:both;
 }
 
 div.annotation-view{
@@ -31,10 +64,6 @@ div.annotation-view{
 	border:2px solid;
 }
 
-/*CSS for detailed view of single annotation*/
-
-
-
 div.type:before{
 	content:"Type\a";  
 	white-space: pre;
@@ -47,19 +76,13 @@ div.url:before{
 	white-space: pre;
 	font-weight: bold;
 }
-/*
-div.highlighted{
-	border:1px solid;
-}*/
 
 div.highlighted:before{
 	content:"Highlighted text\a";  
 	white-space: pre;
 	font-weight: bold;
 }
-/*div.user-info{
-	border: 1px solid;
-}*/
+
 
 div.user-info > .comment:before{
 	content:"User comment\a";  
@@ -93,48 +116,138 @@ div.reply{
 	border-bottom:1px solid gray;
 }
 
-/* Table Sorter CSS */
-table.tablesorter {
-	font-family:arial;
-	background-color: #CDCDCD;
+
+
+
+
+/* Main Table CSS */
+div.annotation-container{
+}
+table.annotation-table{
+	font-family :arial;
 	padding: 10px;
 	font-size: 10pt;
-	width: 100%;
 	text-align: left;
-	table-layout:fixed;
+    width:auto;
 }
-table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+
+
+table.annotation-table > thead > tr{
+     width:75%;
+}
+table.annotation-table > thead > tr > th{
 	background-color: #e6EEEE;
 	border: 1px solid #000;
 	font-size: 10pt;
 	padding: 13px;
 	text-decoration:underline;
+   
 	
 }
-table.tablesorter thead tr .header {
-	background-image: url(../TableSorter/themes/blue/bg.gif);
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
-}
-table.tablesorter tbody td {
+
+
+table.annotation-table > tbody > tr > td{
 	color: #3D3D3D;
 	padding: 5px;
 	background-color: #FFF;
 	vertical-align: top;
 }
 
-table.tablesorter thead tr .headerSortUp {
-	background-image: url(../TableSorter/themes/blue/asc.gif);
+tbody tr:hover > *{
+
+    background-color:#DDDDDD !important;
+    cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
+   }
+
+
+/*DataTables style tweaks*/
+.sorting_asc {
+	background: url('../images/sort_asc.png') no-repeat center right;
 }
-table.tablesorter thead tr .headerSortDown {
-	background-image: url(../TableSorter/themes/blue/desc.gif);
+
+.sorting_desc {
+	background: url('../images/sort_desc.png') no-repeat center right;
 }
-table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
-background-color: #8dbdd8;
+
+.sorting {
+	background: url('../images/sort_both.png') no-repeat center right;
+}
+
+.dataTables_length {
+	width: 40%;
+	clear: both;
+}
+
+.dataTables_filter {
+	display: none;
+}
+
+/*styling for Show x results dropdown */
+select{
+    width:60px;
+    background-color: #FFFFFF;
+    color: #333333;
+    margin: 0px;
+    padding:2px;
 }
 
 
+div.dataTables_info{
+
+    width: 50%;
+    float:left;
+
+}
+
+/*styling for breadcrumbs*/
+.dataTables_paginate {
+    float: right;
+    text-align: right;
+    padding-bottom:10px;
+    padding-top:none;
+}
+
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+    color: #111111 !important;
+    cursor: pointer;
+    float: left;
+    height: 19px;
+}
+.paginate_disabled_previous:hover, .paginate_enabled_previous:hover, .paginate_disabled_next:hover, .paginate_enabled_next:hover {
+    text-decoration: none !important;
+}
+.paginate_disabled_previous:active, .paginate_enabled_previous:active, .paginate_disabled_next:active, .paginate_enabled_next:active {
+    outline: medium none;
+}
+.paginate_disabled_previous, .paginate_disabled_next {
+    color: #666666 !important;
+}
+.paginate_disabled_previous, .paginate_enabled_previous {
+    padding-left: 23px;
+}
+.paginate_disabled_next, .paginate_enabled_next {
+    margin-left: 10px;
+    padding-right: 23px;
+}
+.paginate_disabled_previous {
+    background: url("../images/back_disabled.png") no-repeat scroll left top transparent;
+}
+.paginate_enabled_previous {
+    background: url("../images/back_enabled.png") no-repeat scroll left top transparent;
+}
+.paginate_enabled_previous:hover {
+    background: url("../images/back_enabled_hover.png") no-repeat scroll left top transparent;
+}
+.paginate_disabled_next {
+    background: url("../images/forward_disabled.png") no-repeat scroll right top transparent;
+}
+.paginate_enabled_next {
+    background: url("../images/forward_enabled.png") no-repeat scroll right top transparent;
+}
+.paginate_enabled_next:hover {
+    background: url("../images/forward_enabled_hover.png") no-repeat scroll right top transparent;
+}
+ 
 
 /* Annotation styles in table */
 
@@ -163,27 +276,35 @@ div.grade {
 }
 
 div.chapter-filter > div.filter{
-	width:33%;
+	width:25%;
 	float: left;
 }
 
 
 /*Styles for username search box*/
 div.search{
-	margin-left: 5px;
-	width:100%;
+    padding-bottom: 5px;
 }
+
+input#username{
+    font-size:10pt;
+    width:180px;
+    padding:2px; 
+}
+
 /*Styles for reset button*/
 
 div.reset{
-	text-align:center;
-	border-top: 1px solid gray;
-	padding:15px;
-	border-radius:0px;	chapter
+	text-align:left;
+	/*border-top: 1px solid gray;*/
+	padding:5px;
+	border-radius:0px;
+    float:left;
+    
 }
 
-/* close button */
-#popovercloseid {
-    clear:both;
-}
 
+div.dataTables_scrollHead{
+    padding-top:20px;
+
+}
