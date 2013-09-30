@@ -13,6 +13,10 @@ body{
     font-size:10pt;
 }
 
+.span12 {
+width: 75%;
+}
+
 div.filters-container{
     padding-right:20px;
     z-index:999;
@@ -117,27 +121,29 @@ div.reply{
 
 
 /* Main Table CSS */
-
+div.annotation-container{
+}
 table.annotation-table{
 	font-family :arial;
 	padding: 10px;
 	font-size: 10pt;
-	width: 100%;
 	text-align: left;
-	table-layout:fixed;
+    width:auto;
 }
 
 
-
+table.annotation-table > thead > tr{
+     width:75%;
+}
 table.annotation-table > thead > tr > th{
 	background-color: #e6EEEE;
 	border: 1px solid #000;
 	font-size: 10pt;
 	padding: 13px;
 	text-decoration:underline;
+   
 	
 }
-
 
 
 table.annotation-table > tbody > tr > td{
@@ -168,7 +174,7 @@ tbody tr:hover > *{
 }
 
 .dataTables_length {
-	width: 50%;
+	width: 40%;
 	clear: both;
 }
 
@@ -298,11 +304,7 @@ div.reset{
 }
 
 
-
-
-
-
 div.dataTables_scrollHead{
     padding-top:20px;
-    width: 
+
 }

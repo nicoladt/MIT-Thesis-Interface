@@ -168,7 +168,7 @@ var DashUtils = {
 //      }
 
         DashUtils.MyDataTable = $("table").dataTable({
-            "sScrollY": "530px", "bPaginate": false
+            "sScrollY": "660px", "bPaginate": false
             });new FixedHeader(DashUtils.MyDataTable);
         DashUtils.MyDataTable.fnSort([[3,'desc']]);
        // $('table').css('width', '');
@@ -672,7 +672,7 @@ var DashUtils = {
 };
 
 DashUtils.MyDataTable = $("table").dataTable({
-    "sScrollY": "530px", "bPaginate": false
+    "sScrollY": "660px", "bPaginate": false
     }    ); 
 new FixedHeader(DashUtils.MyDataTable);
 DashUtils.MyDataTable.fnSort([[3,'desc']]);
