@@ -167,11 +167,7 @@ var DashUtils = {
 //          table.append(row);
 //      }
 
-        DashUtils.MyDataTable = $("table").dataTable({
-            "sScrollY": "660px", "bPaginate": false
-            });new FixedHeader(DashUtils.MyDataTable);
-        DashUtils.MyDataTable.fnSort([[3,'desc']]);
-       // $('table').css('width', '');
+        DashUtils.setTableHeight();
 
     },
     //slices up timestamps to be legible for humans
@@ -669,13 +665,27 @@ var DashUtils = {
         });
         return activeFilter;
     },
+
+    setTableHeight: function(){
+        var calcDataTableHeight = function() {
+        return $(window).height()*85/100;
+        };
+
+        DashUtils.MyDataTable = $("table").dataTable({
+        "sScrollY": calcDataTableHeight(), 
+        "bPaginate": false});
+
+        new FixedHeader(DashUtils.MyDataTable);
+        DashUtils.MyDataTable.fnSort([[3,'desc']]);
+        $(window).resize(function () {
+        var oSettings = DashUtils.MyDataTable.fnSettings();
+        oSettings.oScroll.sY = calcDataTableHeight(); 
+        DashUtils.MyDataTable.fnDraw();
+        });  
+    },
 };
 
-DashUtils.MyDataTable = $("table").dataTable({
-    "sScrollY": "660px", "bPaginate": false
-    }    ); 
-new FixedHeader(DashUtils.MyDataTable);
-DashUtils.MyDataTable.fnSort([[3,'desc']]);
+DashUtils.setTableHeight();
 DashUtils.processAnnotations(annotationList);
 DashUtils.populateAnnotationTable(annotationList);
 DashUtils.setupFilterBoxes(annotationList);
