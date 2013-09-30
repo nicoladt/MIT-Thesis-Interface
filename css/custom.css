@@ -1,5 +1,25 @@
 h1{
-	padding: 15px;
+    font-size: 20px;
+    line-height:20px;
+}
+
+h3{
+    font-size:16px;
+    line-height: 17px;
+    padding-top:5px;
+}
+
+body{
+    font-size:10pt;
+}
+
+div.filters-container{
+    padding-right:20px;
+    z-index:999;
+}
+label.checkbox.all.filter{
+    font-size: 10pt;
+   
 }
 
 .annotation-entry > div.highlighted:before{
@@ -21,6 +41,11 @@ h1{
 .detailed-view {
     position:fixed;
     z-index:99;
+}
+
+/* close button */
+#popovercloseid {
+    clear:both;
 }
 
 div.annotation-view{
@@ -143,7 +168,7 @@ tbody tr:hover > *{
 }
 
 .dataTables_length {
-	width: 40%;
+	width: 50%;
 	clear: both;
 }
 
@@ -252,19 +277,32 @@ div.chapter-filter > div.filter{
 
 /*Styles for username search box*/
 div.search{
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
+
+input#username{
+    font-size:10pt;
+    width:180px;
+    padding:2px; 
+}
+
 /*Styles for reset button*/
 
 div.reset{
-	text-align:center;
-	border-top: 1px solid gray;
-	padding:15px;
-	border-radius:0px;	chapter
+	text-align:left;
+	/*border-top: 1px solid gray;*/
+	padding:5px;
+	border-radius:0px;
+    float:left;
+    
 }
 
-/* close button */
-#popovercloseid {
-    clear:both;
-}
 
+
+
+
+
+div.dataTables_scrollHead{
+    padding-top:20px;
+    width: 
+}
