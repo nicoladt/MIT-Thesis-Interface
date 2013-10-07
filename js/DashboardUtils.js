@@ -175,7 +175,7 @@ var DashUtils = {
                 var year = time.slice(0,4);
                 var month = time.slice(5,7);
                 var day = time.slice(8,10);
-                var hours = time.slice(14,19);
+                var hours = time.slice(11,16);
                 return(day +"/" + month + "/" + year + " " + hours);
             },
 
