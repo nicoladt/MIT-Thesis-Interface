@@ -342,6 +342,8 @@ var DashUtils = {
                     $(this).parent().fadeTo(50, 1.0);
                     });
             }
+        DashUtils.updateTableInfo();
+
         });
 
         // If any other filter button is unchecked, uncheck the all button too
@@ -381,6 +383,7 @@ var DashUtils = {
                //}
             }   
 
+        DashUtils.updateTableInfo();
 
         });
 
@@ -431,6 +434,7 @@ var DashUtils = {
         $('#username').val("")
 	    DashUtils.populateAnnotationTable(annotationList);
         DashUtils.setupFilterBoxes(annotationList);
+        DashUtils.updateTableInfo();
 
         });
 
@@ -501,18 +505,31 @@ var DashUtils = {
                     $(this).parent().parent().hide();
                     }
                 });
-           // };
-           // Surfaces "no results" message/row if username search returns nothing
-           var numOfVisibleRows = $('tbody > tr:visible').length;
-           var table = $('.annotation-table');
+            // };
+            // Surfaces "no results" message/row if username search returns nothing
+            var numOfVisibleRows = $('tbody > tr:visible').length;
+            var table = $($('.annotation-table')[0]);
             var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
             row.attr('id', 'empty-message');
-           if (numOfVisibleRows == 0) {
-               table.append(row);
-             }
-           else if (numOfVisibleRows > 1){ $('#empty-message').remove()}
+            if (numOfVisibleRows == 0) {
+                if ($('tbody > tr.table-empty-message:visible').length == 0) {
+                    table.append(row);
+                }
+            }
+            else if (numOfVisibleRows > 1){
+                $('#empty-message').remove()
+//               $('.table-empty-message').remove()
+                
+                }
+            DashUtils.updateTableInfo();
         });
- 
+    },
+
+    updateTableInfo: function(){
+        var numOfVisibleRows = $('tbody > tr:visible').length;
+        var pagecountstr = $('#DataTables_Table_0_info');
+        pagecountstr.html("Showing 1 to " + numOfVisibleRows + " of " + numOfVisibleRows + " entries");
+
     },
     
     //checks to see if a short string matches the beginning of a long string (for username search)
