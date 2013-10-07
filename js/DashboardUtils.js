@@ -505,17 +505,23 @@ var DashUtils = {
                     $(this).parent().parent().hide();
                     }
                 });
-           // };
-           // Surfaces "no results" message/row if username search returns nothing
-           var numOfVisibleRows = $('tbody > tr:visible').length;
-           var table = $('.annotation-table');
+            // };
+            // Surfaces "no results" message/row if username search returns nothing
+            var numOfVisibleRows = $('tbody > tr:visible').length;
+            var table = $($('.annotation-table')[0]);
             var row = $('<tr class="table-empty-message"><td/><td>No results to display</td><td/><td/></tr>');
             row.attr('id', 'empty-message');
-           if (numOfVisibleRows == 0) {
-               table.append(row);
-             }
-           else if (numOfVisibleRows > 1){ $('#empty-message').remove()}
-           DashUtils.updateTableInfo();
+            if (numOfVisibleRows == 0) {
+                if ($('tbody > tr.table-empty-message:visible').length == 0) {
+                    table.append(row);
+                }
+            }
+            else if (numOfVisibleRows > 1){
+                $('#empty-message').remove()
+//               $('.table-empty-message').remove()
+                
+                }
+            DashUtils.updateTableInfo();
         });
     },
 
