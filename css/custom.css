@@ -144,7 +144,7 @@ table.annotation-table{
 }*/
 
 table.annotation-table > thead > tr > th{
-	background-color: #e6EEEE;
+	background-color: rgba(200,221,235,1);
 	border: 1px solid #000;
 	font-size: 10pt;
 	padding: 13px;
@@ -187,6 +187,7 @@ tbody tr:hover > *{
 
 .sorting {
 	background: url('../images/sort_both.png') no-repeat center right;
+    padding-right: 3px;
 }
 
 .dataTables_length {
