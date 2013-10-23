@@ -418,7 +418,7 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
-            $('#username').trigger('keyup');
+            $('#username-search').trigger('keyup');
         });
 
         // When reset button is clicked, "All" checkboxes are selected
@@ -487,13 +487,18 @@ var DashUtils = {
             $('.annotation-table').fadeTo(250, 0.1);
             
         });
-            
+    
+     $('#search-button').on('click', function(){
+             var e = $.Event('keyup');
+             e.which = 13;
+             e.keyCode = 13;
+             // trigger enter event
+             $('#username-search').trigger(e);
+     });
+
         //When username has been typed in and user hits "enter" key to search
-     $('#username').keyup(function(e) {
-            //if (e.keyCode == 13){
-            $('#search').trigger('click');    // enter
-               //var activeUsernameList = new Array(); //makes newArray to contain usernames in table
-            
+     $('#username-search').keyup(function(e) {
+            if (e.keyCode == 13){
             var userString = $('#username').val(); //returns text typed into username search box
             //Resets table display so username search always searches whole table
             $('tr').each(function(){
@@ -524,6 +529,7 @@ var DashUtils = {
                 
                 }
             DashUtils.updateTableInfo();
+         }
         });
     },
 
