@@ -282,13 +282,13 @@ var DashUtils = {
                         entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
                         entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
                         entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
-                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.prepend($('<input type="checkbox" />'));
                         label.append(entrytypes[field[s]]);
                         
                     }
                     else{
                         label.text(' ' + field[s]);
-                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.prepend($('<input type="checkbox" />'));
                     }
                     subjectdiv.append(label);
 
@@ -327,7 +327,7 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', true)
+                    $(this).prop('checked', false)
                     $(this).parent().fadeTo(50, 0.5);
                     });
 
