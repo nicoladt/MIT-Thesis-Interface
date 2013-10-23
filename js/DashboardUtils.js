@@ -124,7 +124,7 @@ var DashUtils = {
             var chaptertitlediv = $('<div class="chaptertitle"></div>').text(annotation.chaptertitle);
 
             var annentry = $('<td class="annotation-entry"></td>');
-            var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
+            var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '" target="_blank">' + annotation.url + "</a>");
             var hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
             var commentdiv = $('<div class="comment"/>').html(annotation.comment);
             var userdiv = $('<div class ="username"/>').html(annotation.username);
@@ -441,52 +441,58 @@ var DashUtils = {
         });
 
         // when a row in the table is clicked.
-        $('table tbody').delegate('tr', 'click', function(){
-            console.log('clicked table row');
-            //find the annotation that corresponds to that row.
-            var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
-            var datetime = $(this).find('td.date-entry').text();
-            var _id = highlighted + datetime;
-            var Found = false;
-            var i = 0;
-            var _ann_id;
+        $('table tbody').delegate('tr', 'click', function(event){
+            console.log('clicked table row', event.target.tagName);
+            if (event.target.tagName == "A"){
+            }
+            else
+            {
+                //find the annotation that corresponds to that row.
+                var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
+                var datetime = $(this).find('td.date-entry').text();
+                var _id = highlighted + datetime;
+                var Found = false;
+                var i = 0;
+                var _ann_id;
 
-            while (Found === false){
-                _ann_id = annotationList[i].highlight + DashUtils.newdatetime(annotationList[i].time);
-                if (_ann_id === _id){
-                    Found = true;
-                }
-                else {
-                    i++;
+                while (Found === false){
+                    _ann_id = annotationList[i].highlight + DashUtils.newdatetime(annotationList[i].time);
+                    if (_ann_id === _id){
+                        Found = true;
+                    }
+                    else {
+                        i++;
 
+                    };
                 };
-            };
 
-            var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
+                var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
 
-            // Find the detailed view div and insert the detailed html into that
-            $('div.detailed-view').empty().append(detailed_html);
-            
-            // when the detailed view close button is clicked (or esc)
-            $(document).keyup(function(e) {
-              if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
-            });
-            // register this click event
-            $('#popovercloseid').on('click', function(){
                 // Find the detailed view div and insert the detailed html into that
-                $('div.detailed-view').empty();
-                $('div.annotation-view').css('visibility', 'hidden');
-                $('.annotation-table').fadeTo(250, 1);
-                $('div.detailed-view').css('width','0').css('height','0');
+                $('div.detailed-view').empty().append(detailed_html);
+                
+                // when the detailed view close button is clicked (or esc)
+                $(document).keyup(function(e) {
+                  if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
+                });
+                // register this click event
+                $('#popovercloseid').on('click', function(){
+                    // Find the detailed view div and insert the detailed html into that
+                    $('div.detailed-view').empty();
+                    $('div.annotation-view').css('visibility', 'hidden');
+                    $('.annotation-table').fadeTo(250, 1);
+                    $('div.detailed-view').css('width','0').css('height','0');
+                });
+                
+                $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
+                $('div.annotation-view').fadeTo(0, 0);
+                $('div.annotation-view').css('visibility', 'visible');
+                $('div.annotation-view').fadeTo(250, 1.0);
+                $('.annotation-table').fadeTo(250, 0.1);
+            }
+                
             });
-            
-            $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
-            $('div.annotation-view').fadeTo(0, 0);
-            $('div.annotation-view').css('visibility', 'visible');
-            $('div.annotation-view').fadeTo(250, 1.0);
-            $('.annotation-table').fadeTo(250, 0.1);
-            
-        });
+        
      $('div.detailed-view').on("click", function(){
          $("#popovercloseid").trigger('click');
          }); 
