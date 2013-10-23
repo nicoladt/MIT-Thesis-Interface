@@ -391,6 +391,7 @@ var DashUtils = {
 
         // When any filter button changes state, update the table
         $('.filter>input').on("click", function() {
+            
             var activeFilter = DashUtils.findallCheckedBoxes();
             var updatedAnnotationList = new Array();
             // now loop through the annotation list and only push the visible ones
