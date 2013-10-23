@@ -176,7 +176,7 @@ var DashUtils = {
                 var month = time.slice(5,7);
                 var day = time.slice(8,10);
                 var hours = time.slice(11,16);
-                return(day +"/" + month + "/" + year + " " + hours);
+                return(year +"/" + month + "/" + day + " " + hours);
             },
 
     /* Remove all entries from the table */
