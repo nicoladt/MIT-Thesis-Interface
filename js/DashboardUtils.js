@@ -487,7 +487,9 @@ var DashUtils = {
             $('.annotation-table').fadeTo(250, 0.1);
             
         });
-    
+     $('div.detailed-view').on("click", function(){
+         $("#popovercloseid").trigger('click');
+         }); 
      $('#search-button').on('click', function(){
              var e = $.Event('keyup');
              e.which = 13;
@@ -579,7 +581,7 @@ var DashUtils = {
 '               {{chaptertitle}}',
 '               </div>',
 '				<div class="url">',
-'				<a href="{{url}}">{{url}}</a>',
+'				<a href="{{url}}" target="_blank">{{url}}</a>',
 '				</div>',
 '				<div class="highlighted">',
 '				{{highlighted}}',

@@ -53,6 +53,7 @@ label.checkbox.all.filter{
 .detailed-view {
     position:fixed;
     z-index:99;
+    cursor: -webkit-zoom-out; cursor: -moz-zoom-out;
 }
 
 /* close button */
