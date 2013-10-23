@@ -121,20 +121,20 @@ div.reply{
 
 
 /* Main Table CSS */
-div.annotation-container{
-}
+
 table.annotation-table{
 	font-family :arial;
 	padding: 10px;
 	font-size: 10pt;
 	text-align: left;
-    width:auto;
+   /* width:auto;*/
 }
 
 
-table.annotation-table > thead > tr{
+/*table.annotation-table > thead > tr{
      width:75%;
-}
+}*/
+
 table.annotation-table > thead > tr > th{
 	background-color: #e6EEEE;
 	border: 1px solid #000;
@@ -144,6 +144,12 @@ table.annotation-table > thead > tr > th{
    
 	
 }
+
+tr > th:hover{
+
+    cursor: pointer; 
+    
+   }
 
 
 table.annotation-table > tbody > tr > td{
@@ -157,7 +163,8 @@ tbody tr:hover > *{
 
     background-color:#DDDDDD !important;
     cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
-   }
+   
+}
 
 
 /*DataTables style tweaks*/

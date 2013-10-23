@@ -6,6 +6,7 @@
  * */
 
 
+
 var DashUtils = {
 
     capitaliseFirstLetter: function(string){
@@ -691,7 +692,8 @@ var DashUtils = {
         DashUtils.MyDataTable = $("table").dataTable({
         "sScrollY": calcDataTableHeight(), 
         "bPaginate": false});
-
+        
+     
         new FixedHeader(DashUtils.MyDataTable);
         DashUtils.MyDataTable.fnSort([[3,'desc']]);
         $(window).resize(function () {
@@ -699,7 +701,8 @@ var DashUtils = {
         oSettings.oScroll.sY = calcDataTableHeight(); 
         DashUtils.MyDataTable.fnDraw();
         });  
-    },
+
+            },
 };
 
 DashUtils.setTableHeight();
