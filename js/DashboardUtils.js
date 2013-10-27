@@ -428,8 +428,8 @@ var DashUtils = {
 			$(this).prop("checked", true);
 		});
 		$('div.filter > input').each(function(){
-			$(this).prop('checked', true);
-                   	$(this).parent().fadeTo(50, 0.5);
+			$(this).prop('checked', false);
+           	$(this).parent().fadeTo(50, 0.5);
 		});
 	
         //clears any username search text that may have been input
