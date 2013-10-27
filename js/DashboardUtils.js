@@ -418,7 +418,7 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
-            $('#username-search').trigger('keyup');
+            $('#search-button').trigger('click');
         });
 
         // When reset button is clicked, "All" checkboxes are selected
