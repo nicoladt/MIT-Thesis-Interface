@@ -273,7 +273,7 @@ var DashUtils = {
                 for (var s in field) {
                     var divclass = field[s].replace(' ', '').toLowerCase();
                     var label = $("<div></div");
-                    label.fadeTo(10, 0.5);
+                    //label.fadeTo(10, 0.5);
                     label.addClass('filter');
                     label.addClass(divclass);
                     // add colour for type of filter.
@@ -328,7 +328,7 @@ var DashUtils = {
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
                     $(this).prop('checked', false)
-                    $(this).parent().fadeTo(50, 0.5);
+                    //$(this).parent().fadeTo(50, 0.5);
                     });
 
                 // update the table and filter boxes
@@ -340,7 +340,7 @@ var DashUtils = {
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
                     $(this).prop('checked', true);
-                    $(this).parent().fadeTo(50, 1.0);
+                    //$(this).parent().fadeTo(50, 1.0);
                     });
             }
         DashUtils.updateTableInfo();
@@ -357,8 +357,8 @@ var DashUtils = {
                 $(this).prop('checked', true);
                 allbutton.prop('checked', false);
                 allbutton.trigger('change'); 
-                $(this).parent().siblings('div').fadeTo(50, 1.0);
-                $(this).parent().fadeTo(50, 1.0);
+                //$(this).parent().siblings('div').fadeTo(50, 1.0);
+                //$(this).parent().fadeTo(50, 1.0);
                 // uncheck the other filter boxes
                 $(this).parent().siblings('div').children('input').each(function(){
                     $(this).prop('checked', false);
@@ -372,8 +372,8 @@ var DashUtils = {
                        var allbutton = $(this).parent().parent().children('label').children('input');
                        allbutton.prop('checked',false);
                        // unfade the other checkboxes
-                       $(this).parent().siblings('div').fadeTo(50, 1.0);
-                       $(this).parent().fadeTo(50, 1.0);
+                       //$(this).parent().siblings('div').fadeTo(50, 1.0);
+                       //$(this).parent().fadeTo(50, 1.0);
                     }
 
                     });
@@ -429,7 +429,7 @@ var DashUtils = {
 		});
 		$('div.filter > input').each(function(){
 			$(this).prop('checked', false);
-           	$(this).parent().fadeTo(50, 0.5);
+           	//$(this).parent().fadeTo(50, 0.5);
 		});
 	
         //clears any username search text that may have been input
