@@ -493,8 +493,13 @@ var DashUtils = {
                 
             });
         
-     $('div.detailed-view').on("click", function(){
-         $("#popovercloseid").trigger('click');
+     $('div.detailed-view').on("click", function(event){
+            if (event.target.tagName == "A"){
+            }
+            else
+            {
+             $("#popovercloseid").trigger('click');
+            }
          }); 
      $('#search-button').on('click', function(){
              var e = $.Event('keyup');
