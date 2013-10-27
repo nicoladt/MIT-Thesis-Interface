@@ -320,11 +320,11 @@ var DashUtils = {
      */
     registerEventHandlers: function () {
         // functionality for the 'all' checkbox in the filterboxes
-        // if all is checked, select all in filterbox
-        // if all is unchecked, uncheck all in filterbox
+        // if all is checked, unselect all in filterbox
+        // if all is unchecked, check all in filterbox
         $('.checkbox.all > input').on('click', function (event) {
             if (this.checked === true){
-                // make all siblings checked too
+                // make all unchecked
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
                     $(this).prop('checked', false)
@@ -339,7 +339,7 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    //$(this).prop('checked', false);
+                    $(this).prop('checked', true);
                     $(this).parent().fadeTo(50, 1.0);
                     });
             }
