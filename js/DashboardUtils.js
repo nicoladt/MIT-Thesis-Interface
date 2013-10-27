@@ -494,8 +494,13 @@ var DashUtils = {
             });
         
      $('div.detailed-view').on("click", function(event){
+            console.log(event.target);
             if (event.target.tagName == "A"){
-            }
+                //Do nothing
+                }
+            else if ($(event.target).is(".annotation-view *, .annotation-view")){
+                //Do nothing
+                }
             else
             {
              $("#popovercloseid").trigger('click');
