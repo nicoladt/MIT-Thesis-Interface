@@ -71,6 +71,7 @@ div.annotation-view{
     padding: 12px;
     z-index:100;
 	border:2px solid;
+    cursor:default;
 }
 
 div.type:before{
