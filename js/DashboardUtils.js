@@ -6,6 +6,7 @@
  * */
 
 
+
 var DashUtils = {
 
     capitaliseFirstLetter: function(string){
@@ -123,7 +124,7 @@ var DashUtils = {
             var chaptertitlediv = $('<div class="chaptertitle"></div>').text(annotation.chaptertitle);
 
             var annentry = $('<td class="annotation-entry"></td>');
-            var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '">' + annotation.url + "</a>");
+            var urldiv = $('<div class="url"/>').html('<a href="' + annotation.url + '" target="_blank">' + annotation.url + "</a>");
             var hldiv = $('<div class="highlighted"/>').html(annotation.highlight);
             var commentdiv = $('<div class="comment"/>').html(annotation.comment);
             var userdiv = $('<div class ="username"/>').html(annotation.username);
@@ -176,7 +177,7 @@ var DashUtils = {
                 var month = time.slice(5,7);
                 var day = time.slice(8,10);
                 var hours = time.slice(11,16);
-                return(day +"/" + month + "/" + year + " " + hours);
+                return(year +"/" + month + "/" + day + " " + hours);
             },
 
     /* Remove all entries from the table */
@@ -272,7 +273,7 @@ var DashUtils = {
                 for (var s in field) {
                     var divclass = field[s].replace(' ', '').toLowerCase();
                     var label = $("<div></div");
-                    label.fadeTo(10, 0.5);
+                    //label.fadeTo(10, 0.5);
                     label.addClass('filter');
                     label.addClass(divclass);
                     // add colour for type of filter.
@@ -281,13 +282,13 @@ var DashUtils = {
                         entrytypes['errata'] = $('<span class="badge badge-important">Errata</span>');
                         entrytypes['suggestion'] = $('<span class="badge badge-info">Suggestion</span>');
                         entrytypes['comment'] = $('<span class="badge badge-success">Comment</span>');
-                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.prepend($('<input type="checkbox" />'));
                         label.append(entrytypes[field[s]]);
                         
                     }
                     else{
                         label.text(' ' + field[s]);
-                        label.prepend($('<input type="checkbox" checked/>'));
+                        label.prepend($('<input type="checkbox" />'));
                     }
                     subjectdiv.append(label);
 
@@ -319,15 +320,15 @@ var DashUtils = {
      */
     registerEventHandlers: function () {
         // functionality for the 'all' checkbox in the filterboxes
-        // if all is checked, select all in filterbox
-        // if all is unchecked, uncheck all in filterbox
+        // if all is checked, unselect all in filterbox
+        // if all is unchecked, check all in filterbox
         $('.checkbox.all > input').on('click', function (event) {
             if (this.checked === true){
-                // make all siblings checked too
+                // make all unchecked
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    $(this).prop('checked', true)
-                    $(this).parent().fadeTo(50, 0.5);
+                    $(this).prop('checked', false)
+                    //$(this).parent().fadeTo(50, 0.5);
                     });
 
                 // update the table and filter boxes
@@ -338,8 +339,8 @@ var DashUtils = {
                 // make all siblings checked too
                 $(this).parent().siblings('div').children('input')
                 .each(function(){
-                    //$(this).prop('checked', false);
-                    $(this).parent().fadeTo(50, 1.0);
+                    $(this).prop('checked', true);
+                    //$(this).parent().fadeTo(50, 1.0);
                     });
             }
         DashUtils.updateTableInfo();
@@ -356,8 +357,8 @@ var DashUtils = {
                 $(this).prop('checked', true);
                 allbutton.prop('checked', false);
                 allbutton.trigger('change'); 
-                $(this).parent().siblings('div').fadeTo(50, 1.0);
-                $(this).parent().fadeTo(50, 1.0);
+                //$(this).parent().siblings('div').fadeTo(50, 1.0);
+                //$(this).parent().fadeTo(50, 1.0);
                 // uncheck the other filter boxes
                 $(this).parent().siblings('div').children('input').each(function(){
                     $(this).prop('checked', false);
@@ -371,8 +372,8 @@ var DashUtils = {
                        var allbutton = $(this).parent().parent().children('label').children('input');
                        allbutton.prop('checked',false);
                        // unfade the other checkboxes
-                       $(this).parent().siblings('div').fadeTo(50, 1.0);
-                       $(this).parent().fadeTo(50, 1.0);
+                       //$(this).parent().siblings('div').fadeTo(50, 1.0);
+                       //$(this).parent().fadeTo(50, 1.0);
                     }
 
                     });
@@ -390,6 +391,7 @@ var DashUtils = {
 
         // When any filter button changes state, update the table
         $('.filter>input').on("click", function() {
+            
             var activeFilter = DashUtils.findallCheckedBoxes();
             var updatedAnnotationList = new Array();
             // now loop through the annotation list and only push the visible ones
@@ -416,7 +418,7 @@ var DashUtils = {
             } // i
             DashUtils.populateAnnotationTable(updatedAnnotationList);
             DashUtils.setupFilterBoxes(updatedAnnotationList);
-            $('#username').trigger('keyup');
+            $('#search-button').trigger('click');
         });
 
         // When reset button is clicked, "All" checkboxes are selected
@@ -426,8 +428,8 @@ var DashUtils = {
 			$(this).prop("checked", true);
 		});
 		$('div.filter > input').each(function(){
-			$(this).prop('checked', true);
-                   	$(this).parent().fadeTo(50, 0.5);
+			$(this).prop('checked', false);
+           	//$(this).parent().fadeTo(50, 0.5);
 		});
 	
         //clears any username search text that may have been input
@@ -439,59 +441,82 @@ var DashUtils = {
         });
 
         // when a row in the table is clicked.
-        $('table tbody').delegate('tr', 'click', function(){
-            console.log('clicked table row');
-            //find the annotation that corresponds to that row.
-            var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
-            var datetime = $(this).find('td.date-entry').text();
-            var _id = highlighted + datetime;
-            var Found = false;
-            var i = 0;
-            var _ann_id;
+        $('table tbody').delegate('tr', 'click', function(event){
+            console.log('clicked table row', event.target.tagName);
+            if (event.target.tagName == "A"){
+            }
+            else
+            {
+                //find the annotation that corresponds to that row.
+                var highlighted = $(this).find('td.annotation-entry > div.highlighted').text();
+                var datetime = $(this).find('td.date-entry').text();
+                var _id = highlighted + datetime;
+                var Found = false;
+                var i = 0;
+                var _ann_id;
 
-            while (Found === false){
-                _ann_id = annotationList[i].highlight + DashUtils.newdatetime(annotationList[i].time);
-                if (_ann_id === _id){
-                    Found = true;
-                }
-                else {
-                    i++;
+                while (Found === false){
+                    _ann_id = annotationList[i].highlight + DashUtils.newdatetime(annotationList[i].time);
+                    if (_ann_id === _id){
+                        Found = true;
+                    }
+                    else {
+                        i++;
 
+                    };
                 };
-            };
 
-            var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
+                var detailed_html = DashUtils.getDetailedAnnotationView(annotationList[i]);
 
-            // Find the detailed view div and insert the detailed html into that
-            $('div.detailed-view').empty().append(detailed_html);
-            
-            // when the detailed view close button is clicked (or esc)
-            $(document).keyup(function(e) {
-              if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
-            });
-            // register this click event
-            $('#popovercloseid').on('click', function(){
                 // Find the detailed view div and insert the detailed html into that
-                $('div.detailed-view').empty();
-                $('div.annotation-view').css('visibility', 'hidden');
-                $('.annotation-table').fadeTo(250, 1);
-                $('div.detailed-view').css('width','0').css('height','0');
+                $('div.detailed-view').empty().append(detailed_html);
+                
+                // when the detailed view close button is clicked (or esc)
+                $(document).keyup(function(e) {
+                  if (e.keyCode == 27) { $('#popovercloseid').trigger('click') }   // esc
+                });
+                // register this click event
+                $('#popovercloseid').on('click', function(){
+                    // Find the detailed view div and insert the detailed html into that
+                    $('div.detailed-view').empty();
+                    $('div.annotation-view').css('visibility', 'hidden');
+                    $('.annotation-table').fadeTo(250, 1);
+                    $('div.detailed-view').css('width','0').css('height','0');
+                });
+                
+                $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
+                $('div.annotation-view').fadeTo(0, 0);
+                $('div.annotation-view').css('visibility', 'visible');
+                $('div.annotation-view').fadeTo(250, 1.0);
+                $('.annotation-table').fadeTo(250, 0.1);
+            }
+                
             });
-            
-            $('div.detailed-view').css('width','100%').css('height','100%').css('position','fixed');
-            $('div.annotation-view').fadeTo(0, 0);
-            $('div.annotation-view').css('visibility', 'visible');
-            $('div.annotation-view').fadeTo(250, 1.0);
-            $('.annotation-table').fadeTo(250, 0.1);
-            
-        });
-            
+        
+     $('div.detailed-view').on("click", function(event){
+            console.log(event.target);
+            if (event.target.tagName == "A"){
+                //Do nothing
+                }
+            else if ($(event.target).is(".annotation-view *, .annotation-view")){
+                //Do nothing
+                }
+            else
+            {
+             $("#popovercloseid").trigger('click');
+            }
+         }); 
+     $('#search-button').on('click', function(){
+             var e = $.Event('keyup');
+             e.which = 13;
+             e.keyCode = 13;
+             // trigger enter event
+             $('#username-search').trigger(e);
+     });
+
         //When username has been typed in and user hits "enter" key to search
-     $('#username').keyup(function(e) {
-            //if (e.keyCode == 13){
-            $('#search').trigger('click');    // enter
-               //var activeUsernameList = new Array(); //makes newArray to contain usernames in table
-            
+     $('#username-search').keyup(function(e) {
+            if (e.keyCode == 13){
             var userString = $('#username').val(); //returns text typed into username search box
             //Resets table display so username search always searches whole table
             $('tr').each(function(){
@@ -522,6 +547,7 @@ var DashUtils = {
                 
                 }
             DashUtils.updateTableInfo();
+         }
         });
     },
 
@@ -571,7 +597,7 @@ var DashUtils = {
 '               {{chaptertitle}}',
 '               </div>',
 '				<div class="url">',
-'				<a href="{{url}}">{{url}}</a>',
+'				<a href="{{url}}" target="_blank">{{url}}</a>',
 '				</div>',
 '				<div class="highlighted">',
 '				{{highlighted}}',
@@ -691,7 +717,8 @@ var DashUtils = {
         DashUtils.MyDataTable = $("table").dataTable({
         "sScrollY": calcDataTableHeight(), 
         "bPaginate": false});
-
+        
+     
         new FixedHeader(DashUtils.MyDataTable);
         DashUtils.MyDataTable.fnSort([[3,'desc']]);
         $(window).resize(function () {
@@ -699,7 +726,8 @@ var DashUtils = {
         oSettings.oScroll.sY = calcDataTableHeight(); 
         DashUtils.MyDataTable.fnDraw();
         });  
-    },
+
+            },
 };
 
 DashUtils.setTableHeight();
